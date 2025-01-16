@@ -30,6 +30,6 @@
   },
   "dependencies": {
     "googleapis": "^144.0.0",
-    "result4js": "1.0.1"
+    "result4js": "1.1.0"
   }
 }
