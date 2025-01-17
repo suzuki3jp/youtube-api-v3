@@ -2,6 +2,7 @@ import type { youtube_v3 } from "googleapis";
 import { Err, Ok, type Result } from "result4js";
 
 import { mainLogger } from "../Logger";
+import { isNullish } from "../utils";
 import { type Privacy, convertToPrivacy } from "./privacy";
 import { Thumbnails } from "./thumbnails";
 
@@ -83,15 +84,15 @@ export class Playlist {
         const logger = mainLogger.createChild("Playlist#from");
 
         if (
-            !data.id ||
-            !data.snippet?.title ||
-            typeof data.snippet?.description !== "string" || // Allow empty string
-            !data.snippet?.thumbnails ||
-            !data.status?.privacyStatus ||
-            !data.contentDetails?.itemCount ||
-            !data.snippet?.publishedAt ||
-            !data.snippet?.channelId ||
-            !data.snippet?.channelTitle
+            isNullish(data.id) ||
+            isNullish(data.snippet?.title) ||
+            isNullish(data.snippet?.description) ||
+            isNullish(data.snippet?.thumbnails) ||
+            isNullish(data.status?.privacyStatus) ||
+            isNullish(data.contentDetails?.itemCount) ||
+            isNullish(data.snippet?.publishedAt) ||
+            isNullish(data.snippet?.channelId) ||
+            isNullish(data.snippet?.channelTitle)
         ) {
             const message =
                 "The raw data is missing required fields. playlist raw data must include id, snippet.title, snippet.description, snippet.thumbnails, status.privacyStatus, contentDetails.itemCount, snippet.publishedAt, snippet.channelId, and snippet.channelTitle.";

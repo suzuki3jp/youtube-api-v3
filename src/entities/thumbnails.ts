@@ -2,6 +2,7 @@ import type { youtube_v3 } from "googleapis";
 import { Err, Ok, type Result } from "result4js";
 
 import { mainLogger } from "../Logger";
+import { isNullish } from "../utils";
 
 /**
  * Presents the thumbnails of the video or the playlist.
@@ -35,21 +36,21 @@ export class Thumbnails {
         logger.debug(JSON.stringify(data, null, "\t"));
 
         if (
-            !data.default?.url ||
-            !data.default?.width ||
-            !data.default?.height ||
-            !data.medium?.url ||
-            !data.medium?.width ||
-            !data.medium?.height ||
-            !data.high?.url ||
-            !data.high?.width ||
-            !data.high?.height ||
-            !data.standard?.url ||
-            !data.standard?.width ||
-            !data.standard?.height ||
-            !data.maxres?.url ||
-            !data.maxres?.width ||
-            !data.maxres?.height
+            isNullish(data.default?.url) ||
+            isNullish(data.default?.width) ||
+            isNullish(data.default?.height) ||
+            isNullish(data.medium?.url) ||
+            isNullish(data.medium?.width) ||
+            isNullish(data.medium?.height) ||
+            isNullish(data.high?.url) ||
+            isNullish(data.high?.width) ||
+            isNullish(data.high?.height) ||
+            isNullish(data.standard?.url) ||
+            isNullish(data.standard?.width) ||
+            isNullish(data.standard?.height) ||
+            isNullish(data.maxres?.url) ||
+            isNullish(data.maxres?.width) ||
+            isNullish(data.maxres?.height)
         )
             return Err(
                 "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
