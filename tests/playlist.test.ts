@@ -2,6 +2,7 @@ import type { youtube_v3 } from "googleapis";
 import { expect, test } from "vitest";
 
 import { Playlist } from "../src/entities/playlist";
+import { Thumbnails } from "../src/entities/thumbnails";
 
 test("Playlist#from", () => {
     const dummy: [youtube_v3.Schema$Playlist, Playlist][] = [
@@ -64,7 +65,7 @@ test("Playlist#from", () => {
                 id: "PLLt-sUPx6jaN8WmXWORKzaT-VJnzw6zgF",
                 title: "Sample",
                 description: "",
-                thumbnails: {
+                thumbnails: new Thumbnails({
                     default: {
                         url: "https://i.ytimg.com/vi/H7MKPb9MvZY/default.jpg",
                         width: 120,
@@ -90,7 +91,7 @@ test("Playlist#from", () => {
                         width: 1280,
                         height: 720,
                     },
-                },
+                }),
                 privacy: "private",
                 count: 3,
                 publishedAt: new Date("2024-10-29T18:32:02.945193Z"),
