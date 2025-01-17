@@ -87,7 +87,28 @@ describe("Thumbnails", () => {
                     height: 720,
                 },
             },
-            "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            new Thumbnails({
+                medium: {
+                    url: "mqdefault.jpg",
+                    width: 320,
+                    height: 180,
+                },
+                high: {
+                    url: "hqdefault.jpg",
+                    width: 480,
+                    height: 360,
+                },
+                standard: {
+                    url: "sddefault.jpg",
+                    width: 640,
+                    height: 480,
+                },
+                maxres: {
+                    url: "maxresdefault.jpg",
+                    width: 1280,
+                    height: 720,
+                },
+            }),
         ],
         [
             {
@@ -112,7 +133,28 @@ describe("Thumbnails", () => {
                     height: 720,
                 },
             },
-            "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            new Thumbnails({
+                default: {
+                    url: "default.jpg",
+                    width: 120,
+                    height: 90,
+                },
+                high: {
+                    url: "hqdefault.jpg",
+                    width: 480,
+                    height: 360,
+                },
+                standard: {
+                    url: "sddefault.jpg",
+                    width: 640,
+                    height: 480,
+                },
+                maxres: {
+                    url: "maxresdefault.jpg",
+                    width: 1280,
+                    height: 720,
+                },
+            }),
         ],
         [
             {
@@ -137,7 +179,28 @@ describe("Thumbnails", () => {
                     height: 720,
                 },
             },
-            "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            new Thumbnails({
+                default: {
+                    url: "default.jpg",
+                    width: 120,
+                    height: 90,
+                },
+                medium: {
+                    url: "mqdefault.jpg",
+                    width: 320,
+                    height: 180,
+                },
+                standard: {
+                    url: "sddefault.jpg",
+                    width: 640,
+                    height: 480,
+                },
+                maxres: {
+                    url: "maxresdefault.jpg",
+                    width: 1280,
+                    height: 720,
+                },
+            }),
         ],
         [
             {
@@ -162,7 +225,28 @@ describe("Thumbnails", () => {
                     height: 720,
                 },
             },
-            "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            new Thumbnails({
+                default: {
+                    url: "default.jpg",
+                    width: 120,
+                    height: 90,
+                },
+                medium: {
+                    url: "mqdefault.jpg",
+                    width: 320,
+                    height: 180,
+                },
+                high: {
+                    url: "hqdefault.jpg",
+                    width: 480,
+                    height: 360,
+                },
+                maxres: {
+                    url: "maxresdefault.jpg",
+                    width: 1280,
+                    height: 720,
+                },
+            }),
         ],
         [
             {
@@ -187,7 +271,28 @@ describe("Thumbnails", () => {
                     height: 480,
                 },
             },
-            "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            new Thumbnails({
+                default: {
+                    url: "default.jpg",
+                    width: 120,
+                    height: 90,
+                },
+                medium: {
+                    url: "mqdefault.jpg",
+                    width: 320,
+                    height: 180,
+                },
+                high: {
+                    url: "hqdefault.jpg",
+                    width: 480,
+                    height: 360,
+                },
+                standard: {
+                    url: "sddefault.jpg",
+                    width: 640,
+                    height: 480,
+                },
+            }),
         ],
 
         // Missing some fields (url, width, height)
