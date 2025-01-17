@@ -4,6 +4,7 @@ import type { OAuthProviders } from "../OAuthProvider";
 import { Pagination } from "../Pagination";
 import { LIKELY_BUG } from "../constants";
 import { Playlist } from "../entities/playlist";
+import type { Privacy } from "../entities/privacy";
 import type { NativeClient } from "../types";
 
 /**
@@ -16,14 +17,7 @@ import type { NativeClient } from "../types";
 export class PlaylistManager {
     private client: NativeClient;
     private readonly MAX_RESULTS = 50;
-    private readonly ALL_PARTS = [
-        "id",
-        "contentDetails",
-        "localizations",
-        "player",
-        "snippet",
-        "status",
-    ];
+    private readonly ALL_PARTS = ["id", "contentDetails", "snippet", "status"];
 
     constructor(oauth: OAuthProviders) {
         this.client = google.youtube({
@@ -168,6 +162,36 @@ export class PlaylistManager {
     }
 
     /**
+     * Creates a playlist.
+     * - This operation uses 50 quota units.
+     * - There is a limit of approximately 10 playlists per day for creation.
+     * - For more details, see the issue: https://issuetracker.google.com/issues/255216949
+     *
+     * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/insert)
+     * @param options Options for creating a playlist.
+     */
+    public async create(options: CreatePlaylistOptions): Promise<Playlist> {
+        const { title, description, privacy, defaultLanguage, localizations } =
+            options;
+        const rawData = await this.client.playlists.insert({
+            part: this.ALL_PARTS,
+            requestBody: {
+                snippet: {
+                    title,
+                    description,
+                    defaultLanguage,
+                },
+                status: {
+                    privacyStatus: privacy,
+                },
+                localizations,
+            },
+        });
+        const playlist = Playlist.from(rawData.data);
+        return playlist.throw();
+    }
+
+    /**
      * Deletes a playlist by its ID.
      * - This operation uses 50 quota units.
      *
@@ -179,4 +203,31 @@ export class PlaylistManager {
             id: playlistId,
         });
     }
+}
+
+export interface CreatePlaylistOptions {
+    /**
+     * The title of the playlist.
+     */
+    title: string;
+
+    /**
+     * The description of the playlist.
+     */
+    description?: string;
+
+    /**
+     * The privacy status of the playlist.
+     */
+    privacy?: Privacy;
+
+    /**
+     * The language of the playlist's default metadata.
+     */
+    defaultLanguage?: string;
+
+    /**
+     * The localized metadata for the playlist.
+     */
+    localizations?: Record<string, { title: string; description: string }>;
 }
