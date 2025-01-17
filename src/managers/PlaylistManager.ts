@@ -9,6 +9,7 @@ import type { NativeClient } from "../types";
 /**
  * Manager for playlist endpoints.
  * Provides methods for `/youtube/v3/playlists`.
+ *
  * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists)
  * @internal
  */
@@ -34,6 +35,7 @@ export class PlaylistManager {
     /**
      * Fetches the playlists owned by the authenticated user.
      * - This operation uses 1 quota unit.
+     *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
      * @param pageToken The token for pagination.
      * @example
@@ -75,6 +77,7 @@ export class PlaylistManager {
     /**
      * Fetches a playlist by its ID.
      * - This operation uses 1 quota unit.
+     *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
      * @param ids The IDs of the playlist.
      * @param pageToken The token for pagination.
@@ -121,6 +124,7 @@ export class PlaylistManager {
      * Fetches the playlists of a channel by its ID.
      * - This operation uses 1 quota unit.
      * - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
+     *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
      * @param id The ID of the channel.
      * @param pageToken The token for pagination.
@@ -166,6 +170,7 @@ export class PlaylistManager {
     /**
      * Deletes a playlist by its ID.
      * - This operation uses 50 quota units.
+     *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/delete)
      * @param playlistId The ID of the playlist.
      */

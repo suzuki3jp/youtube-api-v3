@@ -8,6 +8,7 @@ import { Thumbnails } from "./thumbnails";
 
 /**
  * Represents a YouTube playlist resource.
+ *
  * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists#resource)
  */
 export class Playlist {
