@@ -162,4 +162,16 @@ export class PlaylistManager {
             getWithToken: (token) => this.getByChannelId(id, token),
         });
     }
+
+    /**
+     * Deletes a playlist by its ID.
+     * - This operation uses 50 quota units.
+     * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/delete)
+     * @param playlistId The ID of the playlist.
+     */
+    public async deleteById(playlistId: string): Promise<void> {
+        await this.client.playlists.delete({
+            id: playlistId,
+        });
+    }
 }
