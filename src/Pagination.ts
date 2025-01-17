@@ -113,32 +113,47 @@ export class Pagination<T> {
      * const nextPage = await playlists.next();
      * console.log(nextPage?.data); // The second page of playlists or null if there is no next page
      * ```
-     *
-     * @example
-     * ```ts
-     * // Fetch all playlists
-     * // This logic may consume unnecessary quotas, so be careful when using it in actual applications.
-     * // We strongly recommend fetching the next page based on user actions (e.g., scrolling).
-     * import { ApiClient, StaticOAuthProvider } from "youtube.js";
-     *
-     * const auth = new StaticOAuthProvider({
-     *   accessToken: "ACCESS_TOKEN",
-     * });
-     * const client = new ApiClient(auth);
-     *
-     * const firstPage = await client.playlists.getMine();
-     * let playlists = firstPage.data;
-     * let lastResult: Pagination<Playlist> | null = firstPage;
-     * while (lastResult) {
-     *  lastResult = await lastResult.next();
-     *  if (lastResult) playlists = playlists.concat(lastResult.data);
-     * }
-     * console.log(playlists); // All playlists
      */
     public async next(): Promise<Pagination<T> | null> {
         if (!this.nextToken) return null;
         const data = await this.getWithToken(this.nextToken);
         return data;
+    }
+
+    /**
+     * Fetches all pages data.
+     * - **NOTE**: This method may consume unnecessary quotas, so be careful when using it in actual applications.
+     * - We strongly recommend fetching the next page based on user actions (e.g., scrolling).
+     * @returns All pages data in an array. If several items are in a page, this method will return a 2D array. Use `flat()` to convert it to a 1D array.
+     * @example
+     * ```ts
+     * import { ApiClient, StaticOAuthProvider } from "youtube.js";
+     *
+     * const auth = new StaticOAuthProvider({
+     *  accessToken: "ACCESS_TOKEN",
+     * });
+     * const client = new ApiClient(auth);
+     *
+     * const playlists = await client.playlists.getMine();
+     * const allPlaylists = (await playlists.all()).flat();
+     */
+    public async all(): Promise<T[]> {
+        const result: T[] = [];
+        result.push(this.data);
+
+        let prev = await this.prev();
+        while (prev) {
+            result.unshift(prev.data);
+            prev = await prev.prev();
+        }
+
+        let next = await this.next();
+        while (next) {
+            result.push(next.data);
+            next = await next.next();
+        }
+
+        return result;
     }
 }
 
