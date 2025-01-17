@@ -10,6 +10,39 @@
 > There may be many bugs remaining.  
 > _Despite being in the early stages of development, it is not marked as v0 due to the [limitations of semantic-release](https://github.com/semantic-release/semantic-release/issues/1507)._
 
+## Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+  - [Install](#install)
+  - [Quick Start](#quick-start)
+- [Supported endpoints](#supported-endpoints)
+- [License](#license)
+
+## Getting Started
+### Install
+```sh
+npm i youtube.js
+yarn add youtube.js
+pnpm add youtube.js
+```
+
+### Quick Start
+```ts
+import { ApiClient, StaticOAuthProvider } from "youtube.js";
+
+async function main() {
+    const auth = new StaticOAuthProvider({
+        accessToken: "YOUR_ACCESS_TOKEN",
+    });
+    const client = new ApiClient(auth);
+
+    const playlistsPage = await client.playlists.getMine(); // Fetches the first page of playlists
+    const playlists = (await playlistsPage.all()).flat(); // Fetches all pages of playlists
+}
+
+main();
+```
+
 ## Supported endpoints
 We are striving to support more endpoints, but currently, there are many unsupported endpoints. If the endpoint you want to use is not supported, please open an [issue](https://github.com/suzuki3jp/youtube.js/issues) to request it. We plan to prioritize adding support for the most requested endpoints.
 
@@ -38,10 +71,5 @@ We are striving to support more endpoints, but currently, there are many unsuppo
 
 > We currently do not plan to support the [YouTube Live Streaming API](https://developers.google.com/youtube/v3/live).
 
-
-## Install
-```sh
-npm i youtube.js
-yarn add youtube.js
-pnpm add youtube.js
-```
+## License
+[MIT](./LICENSE)
