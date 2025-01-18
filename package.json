@@ -1,7 +1,7 @@
 {
     "name": "youtubes.js",
     "description": "A JavaScript client for YouTube Data API v3.",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "keywords": [

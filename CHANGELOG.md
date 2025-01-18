@@ -1,3 +1,10 @@
+# [0.2.0](https://github.com/suzuki3jp/youtubes.js/compare/v0.1.2...v0.2.0) (2025-01-18)
+
+
+### Features
+
+* **ci:** Add API documentation generation to release workflow ([85dd586](https://github.com/suzuki3jp/youtubes.js/commit/85dd586c2ddcd30f3270f16bf5473327b8fc5ffe))
+
 ## [0.1.2](https://github.com/suzuki3jp/youtubes.js/compare/v0.1.1...v0.1.2) (2025-01-18)
 
 
