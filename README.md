@@ -7,8 +7,7 @@
 > [!WARNING]
 > _**WIP**_  
 > This project is in the early stages of development.  
-> There may be many bugs remaining.  
-> _Despite being in the early stages of development, it is not marked as v0 due to the [limitations of semantic-release](https://github.com/semantic-release/semantic-release/issues/1507)._
+> There may be many bugs remaining.
 
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
@@ -44,7 +43,7 @@ main();
 ```
 
 ## Supported endpoints
-We are striving to support more endpoints, but currently, there are many unsupported endpoints. If the endpoint you want to use is not supported, please open an [issue](https://github.com/suzuki3jp/youtubes.js/issues) to request it. We plan to prioritize adding support for the most requested endpoints.
+We are striving to support more endpoints, but currently, there are many unsupported endpoints. If the endpoint you want to use is not supported, please open an [issue](https://github.com/suzuki3jp/youtubes.js/issues/new) to request it. We plan to prioritize adding support for the most requested endpoints.
 
 | Endpoint | list (GET) | insert (POST) | update (PUT) | delete (DELETE) |
 |----------|------|--------|--------|--------|
