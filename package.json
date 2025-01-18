@@ -1,10 +1,14 @@
 {
     "name": "youtube.js",
     "description": "A JavaScript client for YouTube Data API v3.",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "keywords": ["youtube", "youtube.js", "api"],
+    "keywords": [
+        "youtube",
+        "youtube.js",
+        "api"
+    ],
     "scripts": {
         "build": "tsc",
         "test": "vitest run",
