@@ -6,7 +6,7 @@
     },
     "docModel": {
         "enabled": true,
-        "projectFolderUrl": "http://github.com/suzuki3jp/youtube.js"
+        "projectFolderUrl": "http://github.com/suzuki3jp/youtube-api-v3"
     },
     "dtsRollup": {
         "enabled": true

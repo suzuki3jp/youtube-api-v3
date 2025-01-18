@@ -1,5 +1,5 @@
 {
-    "name": "youtube.js",
+    "name": "youtube-api-v3",
     "description": "A JavaScript client for YouTube Data API v3.",
     "version": "0.1.0",
     "main": "dist/index.js",
@@ -7,7 +7,10 @@
     "keywords": [
         "youtube",
         "youtube.js",
-        "api"
+        "api",
+        "youtube api",
+        "youtube data api",
+        "youtube data api v3"
     ],
     "scripts": {
         "build": "tsc",
@@ -16,14 +19,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/suzuki3jp/youtube.js.git"
+        "url": "git+https://github.com/suzuki3jp/youtube-api-v3.git"
     },
     "author": "suzuki3jp",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/suzuki3jp/youtube.js/issues"
+        "url": "https://github.com/suzuki3jp/youtube-api-v3/issues"
     },
-    "homepage": "https://github.com/suzuki3jp/youtube.js#readme",
+    "homepage": "https://github.com/suzuki3jp/youtube-api-v3#readme",
     "devDependencies": {
         "@biomejs/biome": "^1.9.4",
         "@microsoft/api-documenter": "^7.26.5",

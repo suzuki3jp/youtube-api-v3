@@ -36,7 +36,7 @@ export class PlaylistManager {
      * @param pageToken - The token for pagination.
      * @example
      * ```ts
-     * import { ApiClient, StaticOAuthProvider } from "youtube.js";
+     * import { ApiClient, StaticOAuthProvider } from "youtube-api-v3";
      *
      * const oauth = new StaticOAuthProvider({
      *   accessToken: "ACCESS_TOKEN",
@@ -80,7 +80,7 @@ export class PlaylistManager {
      * @param pageToken - The token for pagination.
      * @example
      * ```ts
-     * import { ApiClient, StaticOAuthProvider } from "youtube.js";
+     * import { ApiClient, StaticOAuthProvider } from "youtube-api-v3";
      *
      * const oauth = new StaticOAuthProvider({
      *  accessToken: "ACCESS_TOKEN",
@@ -128,7 +128,7 @@ export class PlaylistManager {
      * @param pageToken - The token for pagination.
      * @example
      * ```ts
-     * import { ApiClient, StaticOAuthProvider } from "youtube.js";
+     * import { ApiClient, StaticOAuthProvider } from "youtube-api-v3";
      *
      * const oauth = new StaticOAuthProvider({
      *  accessToken: "ACCESS_TOKEN",

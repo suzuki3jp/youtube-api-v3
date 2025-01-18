@@ -76,7 +76,7 @@ export class Pagination<T> {
      * @returns The previous page. If there is no previous page, returns `null`.
      * @example
      * ```ts
-     * import { ApiClient, StaticOAuthProvider } from "youtube.js";
+     * import { ApiClient, StaticOAuthProvider } from "youtube-api-v3";
      *
      * const oauth = new StaticOAuthProvider({
      *   accessToken: "ACCESS_TOKEN",
@@ -104,7 +104,7 @@ export class Pagination<T> {
      * @returns The next page. If there is no next page, returns `null`.
      * @example
      * ```ts
-     * import { ApiClient, StaticOAuthProvider } from "youtube.js";
+     * import { ApiClient, StaticOAuthProvider } from "youtube-api-v3";
      *
      * const oauth = new StaticOAuthProvider({
      *    accessToken: "ACCESS_TOKEN",
@@ -130,7 +130,7 @@ export class Pagination<T> {
      * @returns All pages data in an array. If several items are in a page, this method will return a 2D array. Use `flat()` to convert it to a 1D array.
      * @example
      * ```ts
-     * import { ApiClient, StaticOAuthProvider } from "youtube.js";
+     * import { ApiClient, StaticOAuthProvider } from "youtube-api-v3";
      *
      * const oauth = new StaticOAuthProvider({
      *  accessToken: "ACCESS_TOKEN",

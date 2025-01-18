@@ -1,5 +1,5 @@
 <h1 align="center">
-  youtube.js
+  youtube-api-v3
 </h1>
 <p align="center"> <em>A JavaScript client for YouTube Data API v3.</em>
 </p>
@@ -21,14 +21,14 @@
 ## Getting Started
 ### Install
 ```sh
-npm i youtube.js
-yarn add youtube.js
-pnpm add youtube.js
+npm i youtube-api-v3
+yarn add youtube-api-v3
+pnpm add youtube-api-v3
 ```
 
 ### Quick Start
 ```ts
-import { ApiClient, StaticOAuthProvider } from "youtube.js";
+import { ApiClient, StaticOAuthProvider } from "youtube-api-v3";
 
 async function main() {
     const oauth = new StaticOAuthProvider({
@@ -44,7 +44,7 @@ main();
 ```
 
 ## Supported endpoints
-We are striving to support more endpoints, but currently, there are many unsupported endpoints. If the endpoint you want to use is not supported, please open an [issue](https://github.com/suzuki3jp/youtube.js/issues) to request it. We plan to prioritize adding support for the most requested endpoints.
+We are striving to support more endpoints, but currently, there are many unsupported endpoints. If the endpoint you want to use is not supported, please open an [issue](https://github.com/suzuki3jp/youtube-api-v3/issues) to request it. We plan to prioritize adding support for the most requested endpoints.
 
 | Endpoint | list (GET) | insert (POST) | update (PUT) | delete (DELETE) |
 |----------|------|--------|--------|--------|

@@ -16,7 +16,7 @@ export class ApiClient {
     private logger: Logger;
     constructor({ oauth, logLevel = "ERROR" }: ApiClientOptions) {
         this.oauth = oauth;
-        this.logger = new Logger({ name: "YOUTUBE.JS", level: logLevel });
+        this.logger = new Logger({ name: "YouTubeApiv3", level: logLevel });
         this.playlists = new PlaylistManager({
             oauth: this.oauth,
             logger: this.logger,
