@@ -1,8 +1,11 @@
 import type { youtube_v3 } from "googleapis";
 import { expect, test } from "vitest";
 
+import { Logger } from "../src/Logger";
 import { Playlist } from "../src/entities/playlist";
 import { Thumbnails } from "../src/entities/thumbnails";
+
+const logger = new Logger({ name: "Playlist#fromTest", level: "ERROR" });
 
 test("Playlist#from", () => {
     const dummy: [youtube_v3.Schema$Playlist, Playlist][] = [
@@ -102,6 +105,6 @@ test("Playlist#from", () => {
     ];
 
     for (const [data, expected] of dummy) {
-        expect(Playlist.from(data).data).toEqual(expected);
+        expect(Playlist.from(data, logger).data).toEqual(expected);
     }
 });

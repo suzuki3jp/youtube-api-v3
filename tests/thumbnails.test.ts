@@ -1,7 +1,10 @@
 import type { youtube_v3 } from "googleapis";
 import { describe, expect, test } from "vitest";
 
+import { Logger } from "../src/Logger";
 import { Thumbnails } from "../src/entities/thumbnails";
+
+const logger = new Logger({ name: "ThumbnailsTest", level: "ERROR" });
 
 describe("Thumbnails", () => {
     const dummy: [youtube_v3.Schema$ThumbnailDetails, Thumbnails | string][] = [
@@ -385,7 +388,7 @@ describe("Thumbnails", () => {
 
     test(`Thumbnails#from for ${dummy.length} cases`, () => {
         for (const [data, expected] of dummy) {
-            expect(Thumbnails.from(data).data).toEqual(expected);
+            expect(Thumbnails.from(data, logger).data).toEqual(expected);
         }
     });
 });
