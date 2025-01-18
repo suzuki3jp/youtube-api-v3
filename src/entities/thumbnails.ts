@@ -1,7 +1,7 @@
 import type { youtube_v3 } from "googleapis";
 import { Err, Ok, type Result } from "result4js";
 
-import { mainLogger } from "../Logger";
+import type { Logger } from "../Logger";
 import { isNullish } from "../utils";
 
 /**
@@ -30,6 +30,7 @@ export class Thumbnails {
      */
     public static from(
         data: youtube_v3.Schema$ThumbnailDetails,
+        logger: Logger,
     ): Result<Thumbnails, string> {
         const isInvalid = Object.values(data)
             .map((t) => {
@@ -44,10 +45,12 @@ export class Thumbnails {
             })
             .every((t) => !t);
         if (!isInvalid) {
-            const logger = mainLogger.createChild("Thumbnails#from");
-            logger.debug("Generating Thumbnails instance from raw data.");
-            logger.debug("Raw data:");
-            logger.debug(JSON.stringify(data, null, "\t"));
+            const currentLogger = logger.createChild("Thumbnails#from");
+            currentLogger.debug(
+                "Generating Thumbnails instance from raw data.",
+            );
+            currentLogger.debug("Raw data:");
+            currentLogger.debug(JSON.stringify(data, null, "\t"));
 
             return Err(
                 "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",

@@ -31,10 +31,10 @@ pnpm add youtube.js
 import { ApiClient, StaticOAuthProvider } from "youtube.js";
 
 async function main() {
-    const auth = new StaticOAuthProvider({
+    const oauth = new StaticOAuthProvider({
         accessToken: "YOUR_ACCESS_TOKEN",
     });
-    const client = new ApiClient(auth);
+    const client = new ApiClient({ oauth });
 
     const playlistsPage = await client.playlists.getMine(); // Fetches the first page of playlists
     const playlists = (await playlistsPage.all()).flat(); // Fetches all pages of playlists

@@ -1,4 +1,4 @@
-import { mainLogger } from "./Logger";
+import type { Logger } from "./Logger";
 import { LIKELY_BUG } from "./constants";
 
 /**
@@ -39,8 +39,11 @@ export class Pagination<T> {
      */
     private getWithToken: (token: string) => Promise<Pagination<T>>;
 
+    private logger: Logger;
+
     constructor({
         data,
+        logger,
         prevToken,
         nextToken,
         resultsPerPage,
@@ -48,14 +51,14 @@ export class Pagination<T> {
         getWithToken,
     }: PaginationOptions<T>) {
         this.data = data;
+        this.logger = logger.createChild("Pagination#constructor");
         this.prevToken = prevToken ?? null;
         this.nextToken = nextToken ?? null;
         this.getWithToken = getWithToken;
 
         if (!resultsPerPage || !totalResults) {
-            const logger = mainLogger.createChild("Pagination#constructor");
-            logger.debug("resultsPerPage or totalResults is not provided");
-            logger.debug(
+            this.logger.debug("resultsPerPage or totalResults is not provided");
+            this.logger.debug(
                 "resultsPerPage and totalResults are expected to be included in the API response",
             );
             throw new Error(LIKELY_BUG);
@@ -75,10 +78,10 @@ export class Pagination<T> {
      * ```ts
      * import { ApiClient, StaticOAuthProvider } from "youtube.js";
      *
-     * const auth = new StaticOAuthProvider({
+     * const oauth = new StaticOAuthProvider({
      *   accessToken: "ACCESS_TOKEN",
      * });
-     * const client = new ApiClient(auth);
+     * const client = new ApiClient({ oauth });
      *
      * const playlists = await client.playlists.getMine();
      * console.log(playlists.data); // The first page of playlists
@@ -103,10 +106,10 @@ export class Pagination<T> {
      * ```ts
      * import { ApiClient, StaticOAuthProvider } from "youtube.js";
      *
-     * const auth = new StaticOAuthProvider({
+     * const oauth = new StaticOAuthProvider({
      *    accessToken: "ACCESS_TOKEN",
      * });
-     * const client = new ApiClient(auth);
+     * const client = new ApiClient({ oauth });
      *
      * const playlists = await client.playlists.getMine();
      * console.log(playlists.data); // The first page of playlists
@@ -129,10 +132,10 @@ export class Pagination<T> {
      * ```ts
      * import { ApiClient, StaticOAuthProvider } from "youtube.js";
      *
-     * const auth = new StaticOAuthProvider({
+     * const oauth = new StaticOAuthProvider({
      *  accessToken: "ACCESS_TOKEN",
      * });
-     * const client = new ApiClient(auth);
+     * const client = new ApiClient({ oauth });
      *
      * const playlists = await client.playlists.getMine();
      * const allPlaylists = (await playlists.all()).flat();
@@ -159,6 +162,7 @@ export class Pagination<T> {
 
 export interface PaginationOptions<T> {
     data: T;
+    logger: Logger;
     prevToken?: string | null;
     nextToken?: string | null;
     resultsPerPage?: number | null;

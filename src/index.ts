@@ -10,3 +10,4 @@ export type {
 export { ApiClient } from "./ApiClient";
 export { StaticCredentials, StaticOAuthProvider } from "./OAuthProvider";
 export { Pagination, PaginationOptions } from "./Pagination";
+export { LogLevel } from "./Logger";

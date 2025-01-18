@@ -1,7 +1,7 @@
 import type { youtube_v3 } from "googleapis";
 import { Err, Ok, type Result } from "result4js";
 
-import { mainLogger } from "../Logger";
+import type { Logger } from "../Logger";
 import { isNullish } from "../utils";
 import { type Privacy, convertToPrivacy } from "./privacy";
 import { Thumbnails } from "./thumbnails";
@@ -81,8 +81,9 @@ export class Playlist {
 
     public static from(
         data: youtube_v3.Schema$Playlist,
+        logger: Logger,
     ): Result<Playlist, string> {
-        const logger = mainLogger.createChild("Playlist#from");
+        const currentLogger = logger.createChild("Playlist#from");
 
         if (
             isNullish(data.id) ||
@@ -97,13 +98,16 @@ export class Playlist {
         ) {
             const message =
                 "The raw data is missing required fields. playlist raw data must include id, snippet.title, snippet.description, snippet.thumbnails, status.privacyStatus, contentDetails.itemCount, snippet.publishedAt, snippet.channelId, and snippet.channelTitle.";
-            logger.debug("Generating Playlist instance from raw data.");
-            logger.debug("Raw data:");
-            logger.debug(JSON.stringify(data, null, "\t"));
+            currentLogger.debug("Generating Playlist instance from raw data.");
+            currentLogger.debug("Raw data:");
+            currentLogger.debug(JSON.stringify(data, null, "\t"));
             return Err(message);
         }
 
-        const thumbnails = Thumbnails.from(data.snippet.thumbnails);
+        const thumbnails = Thumbnails.from(
+            data.snippet.thumbnails,
+            currentLogger,
+        );
         const privacy = convertToPrivacy(data.status.privacyStatus);
         if (privacy.isErr()) return Err(privacy.data);
         if (thumbnails.isErr()) return Err(thumbnails.data);

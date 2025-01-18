@@ -1,5 +1,6 @@
 import { google } from "googleapis";
 
+import type { Logger } from "../Logger";
 import type { OAuthProviders } from "../OAuthProvider";
 import { Pagination } from "../Pagination";
 import { LIKELY_BUG } from "../constants";
@@ -16,14 +17,16 @@ import type { NativeClient } from "../types";
  */
 export class PlaylistManager {
     private client: NativeClient;
+    private logger: Logger;
     private readonly MAX_RESULTS = 50;
     private readonly ALL_PARTS = ["id", "contentDetails", "snippet", "status"];
 
-    constructor(oauth: OAuthProviders) {
+    constructor({ oauth, logger }: PlaylistManagerOptions) {
         this.client = google.youtube({
             version: "v3",
             auth: oauth.getNativeOauth(),
         });
+        this.logger = logger.createChild("PlaylistManager");
     }
 
     /**
@@ -36,11 +39,11 @@ export class PlaylistManager {
      * ```ts
      * import { ApiClient, StaticOAuthProvider } from "youtube.js";
      *
-     * const auth = new StaticOAuthProvider({
+     * const oauth = new StaticOAuthProvider({
      *   accessToken: "ACCESS_TOKEN",
      * });
      *
-     * const client = new ApiClient(auth);
+     * const client = new ApiClient({ oauth });
      * const playlists = await client.playlists.getMine();
      * console.log(playlists.data); // Playlist[]
      * ```
@@ -53,13 +56,14 @@ export class PlaylistManager {
             pageToken,
         });
         const playlists = rawData.data.items?.map((item) =>
-            Playlist.from(item),
+            Playlist.from(item, this.logger),
         );
         if (!playlists || playlists.some((playlist) => playlist.isErr()))
             throw new Error(LIKELY_BUG);
 
         return new Pagination({
             data: playlists.map((playlist) => playlist.throwMap(LIKELY_BUG)),
+            logger: this.logger,
             prevToken: rawData.data.prevPageToken,
             nextToken: rawData.data.nextPageToken,
             resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
@@ -79,10 +83,10 @@ export class PlaylistManager {
      * ```ts
      * import { ApiClient, StaticOAuthProvider } from "youtube.js";
      *
-     * const auth = new StaticOAuthProvider({
+     * const oauth = new StaticOAuthProvider({
      *  accessToken: "ACCESS_TOKEN",
      * });
-     * const client = new ApiClient(auth);
+     * const client = new ApiClient({ oauth });
      *
      * const playlists = await client.playlists.getByIds(["ID1", "ID2"]);
      * console.log(playlists.data); // [Playlist, Playlist]
@@ -99,13 +103,14 @@ export class PlaylistManager {
             pageToken,
         });
         const playlists = rawData.data.items?.map((item) =>
-            Playlist.from(item),
+            Playlist.from(item, this.logger),
         );
         if (!playlists || playlists.some((playlist) => playlist.isErr()))
             throw new Error(LIKELY_BUG);
 
         return new Pagination({
             data: playlists.map((playlist) => playlist.throwMap(LIKELY_BUG)),
+            logger: this.logger,
             prevToken: rawData.data.prevPageToken,
             nextToken: rawData.data.nextPageToken,
             resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
@@ -126,10 +131,10 @@ export class PlaylistManager {
      * ```ts
      * import { ApiClient, StaticOAuthProvider } from "youtube.js";
      *
-     * const auth = new StaticOAuthProvider({
+     * const oauth = new StaticOAuthProvider({
      *  accessToken: "ACCESS_TOKEN",
      * });
-     * const client = new ApiClient(auth);
+     * const client = new ApiClient({ oauth });
      *
      * const playlists = await client.playlists.getByChannelId("CHANNEL_ID");
      * console.log(playlists.data); // Playlist[]
@@ -146,13 +151,14 @@ export class PlaylistManager {
             pageToken,
         });
         const playlists = rawData.data.items?.map((item) =>
-            Playlist.from(item),
+            Playlist.from(item, this.logger),
         );
         if (!playlists || playlists.some((playlist) => playlist.isErr()))
             throw new Error(LIKELY_BUG);
 
         return new Pagination({
             data: playlists.map((playlist) => playlist.throwMap(LIKELY_BUG)),
+            logger: this.logger,
             prevToken: rawData.data.prevPageToken,
             nextToken: rawData.data.nextPageToken,
             resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
@@ -187,7 +193,7 @@ export class PlaylistManager {
                 localizations,
             },
         });
-        const playlist = Playlist.from(rawData.data);
+        const playlist = Playlist.from(rawData.data, this.logger);
         return playlist.throw();
     }
 
@@ -230,4 +236,9 @@ export interface CreatePlaylistOptions {
      * The localized metadata for the playlist.
      */
     localizations?: Record<string, { title: string; description: string }>;
+}
+
+export interface PlaylistManagerOptions {
+    oauth: OAuthProviders;
+    logger: Logger;
 }

@@ -56,12 +56,10 @@ export class Logger {
     }
 }
 
-type LogLevel = "ERROR" | "INFO" | "DEBUG";
+export type LogLevel = "ERROR" | "INFO" | "DEBUG";
 
 type LoggerOptions = {
     name: string;
     level?: LogLevel;
     parent?: Logger;
 };
-
-export const mainLogger = new Logger({ name: "YOUTUBE.JS" });
