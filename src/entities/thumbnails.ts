@@ -26,7 +26,7 @@ export class Thumbnails {
 
     /**
      * Generates a `Thumbnails` instance from the YouTube API raw data.
-     * @param data
+     * @param data - The raw data from the YouTube API.
      */
     public static from(
         data: youtube_v3.Schema$ThumbnailDetails,

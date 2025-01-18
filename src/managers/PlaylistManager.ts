@@ -13,7 +13,6 @@ import type { NativeClient } from "../types";
  * Provides methods for `/youtube/v3/playlists`.
  *
  * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists)
- * @internal
  */
 export class PlaylistManager {
     private client: NativeClient;
@@ -34,7 +33,7 @@ export class PlaylistManager {
      * - This operation uses 1 quota unit.
      *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
-     * @param pageToken The token for pagination.
+     * @param pageToken - The token for pagination.
      * @example
      * ```ts
      * import { ApiClient, StaticOAuthProvider } from "youtube.js";
@@ -77,8 +76,8 @@ export class PlaylistManager {
      * - This operation uses 1 quota unit.
      *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
-     * @param ids The IDs of the playlist.
-     * @param pageToken The token for pagination.
+     * @param ids - The IDs of the playlist.
+     * @param pageToken - The token for pagination.
      * @example
      * ```ts
      * import { ApiClient, StaticOAuthProvider } from "youtube.js";
@@ -125,8 +124,8 @@ export class PlaylistManager {
      * - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
      *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
-     * @param id The ID of the channel.
-     * @param pageToken The token for pagination.
+     * @param id - The ID of the channel.
+     * @param pageToken - The token for pagination.
      * @example
      * ```ts
      * import { ApiClient, StaticOAuthProvider } from "youtube.js";
@@ -174,7 +173,7 @@ export class PlaylistManager {
      * - For more details, see the issue: https://issuetracker.google.com/issues/255216949
      *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/insert)
-     * @param options Options for creating a playlist.
+     * @param options - Options for creating a playlist.
      */
     public async create(options: CreatePlaylistOptions): Promise<Playlist> {
         const { title, description, privacy, defaultLanguage, localizations } =
@@ -202,7 +201,7 @@ export class PlaylistManager {
      * - This operation uses 50 quota units.
      *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/delete)
-     * @param playlistId The ID of the playlist.
+     * @param playlistId - The ID of the playlist.
      */
     public async deleteById(playlistId: string): Promise<void> {
         await this.client.playlists.delete({

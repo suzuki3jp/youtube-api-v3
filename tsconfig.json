@@ -5,6 +5,8 @@
         "outDir": "./dist",
         "rootDir": "./src",
         "declaration": true,
+        "sourceMap": true,
+        "declarationMap": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "strict": true,

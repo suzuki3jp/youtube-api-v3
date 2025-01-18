@@ -1,0 +1,26 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
+    "mainEntryPointFilePath": "<projectFolder>/dist/index.d.ts",
+    "apiReport": {
+        "enabled": false
+    },
+    "docModel": {
+        "enabled": true,
+        "projectFolderUrl": "http://github.com/suzuki3jp/youtube.js"
+    },
+    "dtsRollup": {
+        "enabled": true
+    },
+    "messages": {
+        "extractorMessageReporting": {
+            "ae-missing-release-tag": {
+                "logLevel": "none",
+                "addToApiReportFile": false
+            },
+            "ae-forgotten-export": {
+                "logLevel": "none",
+                "addToApiReportFile": false
+            }
+        }
+    }
+}

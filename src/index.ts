@@ -7,7 +7,11 @@ export type {
     CreatePlaylistOptions,
 } from "./managers/PlaylistManager";
 
-export { ApiClient } from "./ApiClient";
-export { StaticCredentials, StaticOAuthProvider } from "./OAuthProvider";
+export { ApiClient, ApiClientOptions } from "./ApiClient";
+export {
+    StaticCredentials,
+    StaticOAuthProvider,
+    OAuthProviders,
+} from "./OAuthProvider";
 export { Pagination, PaginationOptions } from "./Pagination";
 export { LogLevel } from "./Logger";

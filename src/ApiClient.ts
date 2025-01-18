@@ -32,7 +32,6 @@ export interface ApiClientOptions {
 
     /**
      * The log level for the client.
-     * @default "ERROR"
      */
     logLevel?: LogLevel;
 }

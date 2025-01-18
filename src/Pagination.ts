@@ -35,7 +35,7 @@ export class Pagination<T> {
 
     /**
      * Fetches the page with the given token.
-     * @param token The token of the page to fetch.
+     * @param token - The token of the page to fetch.
      */
     private getWithToken: (token: string) => Promise<Pagination<T>>;
 
@@ -139,6 +139,7 @@ export class Pagination<T> {
      *
      * const playlists = await client.playlists.getMine();
      * const allPlaylists = (await playlists.all()).flat();
+     * ```
      */
     public async all(): Promise<T[]> {
         const result: T[] = [];
