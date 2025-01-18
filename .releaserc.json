@@ -1,7 +1,5 @@
 {
-    "branches": [
-        "main"
-    ],
+    "branches": ["main"],
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
@@ -14,7 +12,8 @@
                 "assets": [
                     "package.json",
                     "package-lock.json",
-                    "CHANGELOG.md"
+                    "CHANGELOG.md",
+                    "docs/api/*"
                 ]
             }
         ]
