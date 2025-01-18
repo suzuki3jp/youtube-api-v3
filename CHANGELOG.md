@@ -1,3 +1,10 @@
+## [0.1.2](https://github.com/suzuki3jp/youtubes.js/compare/v0.1.1...v0.1.2) (2025-01-18)
+
+
+### Bug Fixes
+
+* Prevent similar package name error ([e175123](https://github.com/suzuki3jp/youtubes.js/commit/e175123f61396376ceb3537c345ef565c14b5fe6))
+
 ## [0.1.1](https://github.com/suzuki3jp/youtubes.js/compare/v0.1.0...v0.1.1) (2025-01-18)
 
 
