@@ -11,11 +11,18 @@
 
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
+- [Highlights](#highlights)
 - [Getting Started](#getting-started)
   - [Install](#install)
   - [Quick Start](#quick-start)
 - [Supported endpoints](#supported-endpoints)
 - [License](#license)
+
+## Highlights
+- Full object-oriented architecture
+- Complete TypeScript type definitions
+- Robust error handling with `Result` type (coming soon)
+- Built-in request pagination
 
 ## Getting Started
 ### Install
