@@ -9,12 +9,13 @@
 > This project is in the early stages of development.  
 > There may be many bugs remaining.
 
+
 ## Table of Contents
-- [Table of Contents](#table-of-contents)
+<!-- no toc -->
 - [Highlights](#highlights)
-- [Getting Started](#getting-started)
-  - [Install](#install)
-  - [Quick Start](#quick-start)
+- [Quick Start](#quick-start)
+- [Introduction](/docs/01-introduction.md)
+- [Reference](/docs/api/youtubes.js.md)
 - [Supported endpoints](#supported-endpoints)
 - [License](#license)
 
@@ -24,15 +25,13 @@
 - Robust error handling with `Result` type (coming soon)
 - Built-in request pagination
 
-## Getting Started
-### Install
+## Quick Start
 ```sh
 npm i youtubes.js
 yarn add youtubes.js
 pnpm add youtubes.js
 ```
 
-### Quick Start
 ```ts
 import { ApiClient, StaticOAuthProvider } from "youtubes.js";
 
