@@ -1,9 +1,9 @@
-## [0.1.1](https://github.com/suzuki3jp/youtube-api-v3/compare/v0.1.0...v0.1.1) (2025-01-18)
+## [0.1.1](https://github.com/suzuki3jp/youtubes.js/compare/v0.1.0...v0.1.1) (2025-01-18)
 
 
 ### Bug Fixes
 
-* Prevent similar package name error ([fc2ecc4](https://github.com/suzuki3jp/youtube-api-v3/commit/fc2ecc4daefa8babb717a5ce33c607d01c96dda2))
+* Prevent similar package name error ([fc2ecc4](https://github.com/suzuki3jp/youtubes.js/commit/fc2ecc4daefa8babb717a5ce33c607d01c96dda2))
 
 # [0.1.0](https://github.com/suzuki3jp/youtube.js/compare/v0.0.0...v0.1.0) (2025-01-18)
 
