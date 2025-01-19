@@ -1,5 +1,6 @@
 import type { Logger } from "./Logger";
 import { LIKELY_BUG } from "./constants";
+import { isNullish } from "./utils";
 
 /**
  * Provides utility methods for pagination.
@@ -56,7 +57,7 @@ export class Pagination<T> {
         this.nextToken = nextToken ?? null;
         this.getWithToken = getWithToken;
 
-        if (!resultsPerPage || !totalResults) {
+        if (isNullish(resultsPerPage) || isNullish(totalResults)) {
             this.logger.debug("resultsPerPage or totalResults is not provided");
             this.logger.debug(
                 "resultsPerPage and totalResults are expected to be included in the API response",
