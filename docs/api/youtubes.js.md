@@ -177,6 +177,15 @@ The credentials for a `StaticOAuthProvider`
 
 
 </td></tr>
+<tr><td>
+
+[UpdatePlaylistOptions](./youtubes.js.updateplaylistoptions.md)
+
+
+</td><td>
+
+
+</td></tr>
 </tbody></table>
 
 ## Type Aliases

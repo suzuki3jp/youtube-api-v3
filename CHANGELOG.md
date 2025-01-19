@@ -1,3 +1,10 @@
+## [0.4.1](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.0...v0.4.1) (2025-01-19)
+
+
+### Bug Fixes
+
+* Add missing exports for `PlaylistManager` ([adcf55a](https://github.com/suzuki3jp/youtubes.js/commit/adcf55a8bbce6a00484fa20b2c00b51a72e5010b))
+
 # [0.4.0](https://github.com/suzuki3jp/youtubes.js/compare/v0.3.0...v0.4.0) (2025-01-19)
 
 

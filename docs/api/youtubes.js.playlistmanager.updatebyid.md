@@ -41,7 +41,7 @@ options
 
 </td><td>
 
-UpdatePlaylistOptions
+[UpdatePlaylistOptions](./youtubes.js.updateplaylistoptions.md)
 
 
 </td><td>
