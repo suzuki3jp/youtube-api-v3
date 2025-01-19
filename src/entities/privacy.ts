@@ -1,13 +1,17 @@
 import { Err, Ok, type Result } from "result4js";
 
+import { LikelyBugError } from "../errors";
+
 export type Privacy = "public" | "unlisted" | "private";
 
 /**
  * Converts a YouTube API raw data to a `Privacy` type.
  * @param data
  */
-export function convertToPrivacy(data?: string): Result<Privacy, string> {
-    if (!data) return Err("The raw data is missing.");
+export function convertToPrivacy(
+    data?: string,
+): Result<Privacy, LikelyBugError> {
+    if (!data) return Err(new LikelyBugError("The raw data is undefined."));
 
     switch (data) {
         case "public":
@@ -18,7 +22,9 @@ export function convertToPrivacy(data?: string): Result<Privacy, string> {
             return Ok("private" as Privacy);
         default:
             return Err(
-                `The raw data is unexpected format. Expected "public", "unlisted", or "private".`,
+                new LikelyBugError(
+                    `The raw data is unexpected format. Expected "public", "unlisted", or "private". Received: ${data}`,
+                ),
             );
     }
 }

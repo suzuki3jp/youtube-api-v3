@@ -2,6 +2,7 @@ import type { youtube_v3 } from "googleapis";
 import { Err, Ok, type Result } from "result4js";
 
 import type { Logger } from "../Logger";
+import { LikelyBugError } from "../errors";
 import { isNullish } from "../utils";
 import { type Privacy, convertToPrivacy } from "./privacy";
 import { Thumbnails } from "./thumbnails";
@@ -82,7 +83,7 @@ export class Playlist {
     public static from(
         data: youtube_v3.Schema$Playlist,
         logger: Logger,
-    ): Result<Playlist, string> {
+    ): Result<Playlist, LikelyBugError> {
         const currentLogger = logger.createChild("Playlist#from");
 
         if (
@@ -101,7 +102,7 @@ export class Playlist {
             currentLogger.debug("Generating Playlist instance from raw data.");
             currentLogger.debug("Raw data:");
             currentLogger.debug(JSON.stringify(data, null, "\t"));
-            return Err(message);
+            return Err(new LikelyBugError(message));
         }
 
         const thumbnails = Thumbnails.from(
@@ -125,6 +126,24 @@ export class Playlist {
                 channelName: data.snippet.channelTitle,
             }),
         );
+    }
+
+    public static fromMany(
+        data: youtube_v3.Schema$Playlist[],
+        logger: Logger,
+    ): Result<Playlist[], LikelyBugError> {
+        const currentLogger = logger.createChild("Playlist#fromMany");
+
+        const playlists: Playlist[] = [];
+        for (const playlist of data) {
+            const result = Playlist.from(playlist, currentLogger);
+            if (result.isErr()) {
+                return Err(result.data);
+            }
+            playlists.push(result.data);
+        }
+
+        return Ok(playlists);
     }
 }
 

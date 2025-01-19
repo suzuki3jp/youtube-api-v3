@@ -9,6 +9,8 @@
 > This project is in the early stages of development.  
 > There may be many bugs remaining.
 
+![NPM Version](https://img.shields.io/npm/v/youtubes.js)
+![NPM Downloads](https://img.shields.io/npm/dm/youtubes.js)
 
 ## Table of Contents
 <!-- no toc -->
@@ -22,7 +24,7 @@
 ## Highlights
 - Full object-oriented architecture
 - Complete TypeScript type definitions
-- Robust error handling with `Result` type (coming soon)
+- Robust error handling with `Result` type
 - Built-in request pagination
 
 ## Quick Start

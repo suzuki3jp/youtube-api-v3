@@ -2,6 +2,7 @@ import type { youtube_v3 } from "googleapis";
 import { Err, Ok, type Result } from "result4js";
 
 import type { Logger } from "../Logger";
+import { LikelyBugError } from "../errors";
 import { isNullish } from "../utils";
 
 /**
@@ -31,7 +32,7 @@ export class Thumbnails {
     public static from(
         data: youtube_v3.Schema$ThumbnailDetails,
         logger: Logger,
-    ): Result<Thumbnails, string> {
+    ): Result<Thumbnails, LikelyBugError> {
         const isInvalid = Object.values(data)
             .map((t) => {
                 if (!t) return false;
@@ -53,7 +54,9 @@ export class Thumbnails {
             currentLogger.debug(JSON.stringify(data, null, "\t"));
 
             return Err(
-                "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+                new LikelyBugError(
+                    "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+                ),
             );
         }
 

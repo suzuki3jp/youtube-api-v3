@@ -1,7 +1,7 @@
 # Introduction
 ## What's `youtubes.js`?
 `youtubes.js` is a JavaScript library for interacting YouTube Data API v3.
-Type-safe, Object-oriented, handling errors with `Result` (coming soon)
+Type-safe, Object-oriented, handling errors with `Result`
 
 ## Installation
 `youtubes.js` supports LTS nodejs version.
@@ -32,6 +32,33 @@ async function main() {
 
     const playlistsPage = await client.playlists.getMine(); // Fetches the first page of playlists
     const playlists = (await playlistsPage.all()).flat(); // Fetches all pages of playlists
+}
+
+main();
+```
+
+## Handling errors
+All public methods of `youtube.js` return `Result` of [`result4js`](https://github.com/suzuki3jp/result4js).  
+Using `Result` enables type-safe error handling.
+> If you want to abandon type safety and perform dangerous error handling, you can use [`Result#throw`](https://github.com/suzuki3jp/result4js?tab=readme-ov-file#usage).
+
+```ts
+import { ApiClient, StaticOAuthProvider } from "youtubes.js";
+
+async function main() {
+    const oauth = new StaticOAuthProvider({
+        accessToken: "YOUR_ACCESS_TOKEN",
+    });
+    const client = new ApiClient({ oauth });
+
+    const playlistsResult = await client.playlists.getMine();
+    
+    if (playlists.isErr()) {
+        // Handle error case
+        return;
+    }
+
+    const playlists = playlistsResult.data;
 }
 
 main();
