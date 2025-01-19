@@ -156,4 +156,22 @@ Fetches the playlists owned by the authenticated user.
 
 
 </td></tr>
+<tr><td>
+
+[updateById(options)](./youtubes.js.playlistmanager.updatebyid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Updates a playlist by its ID.
+
+- This operation uses 50 quota units. - \[If you are submitting an update request, and your request does not specify a value for a property that already has a value, the property's existing value will be deleted.\](https://developers.google.com/youtube/v3/docs/playlists/update\#request-body) - For example, when updating a playlist that has a description set, if you don't specify the `description`<!-- -->, it will be set to an empty string. - However, for the `privacy` property, it seems to remain unchanged if not specified.
+
+\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/update)
+
+
+</td></tr>
 </tbody></table>

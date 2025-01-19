@@ -30,6 +30,19 @@ The main class for interacting with the YouTube Data API.
 </td></tr>
 <tr><td>
 
+[LikelyBugError](./youtubes.js.likelybugerror.md)
+
+
+</td><td>
+
+Represents an error that is likely a bug in the library.
+
+If you encounter this error, please report the issue on \[GitHub Issue\](https://github.com/suzuki3jp/youtubes.js/issues/new).
+
+
+</td></tr>
+<tr><td>
+
 [Pagination](./youtubes.js.pagination.md)
 
 
@@ -86,6 +99,19 @@ An OAuth provider that doesn't refresh the token
 Presents the thumbnails of the video or the playlist.
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/thumbnails)
+
+
+</td></tr>
+<tr><td>
+
+[YouTubeApiError](./youtubes.js.youtubeapierror.md)
+
+
+</td><td>
+
+Represents an error from the YouTube API.
+
+This error is thrown when the YouTube API returns an error response.
 
 
 </td></tr>
@@ -187,6 +213,15 @@ Description
 <tr><td>
 
 [Privacy](./youtubes.js.privacy.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)
 
 
 </td><td>

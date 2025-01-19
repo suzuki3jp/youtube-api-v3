@@ -63,5 +63,5 @@ Logger
 </tbody></table>
 **Returns:**
 
-Result&lt;[Thumbnails](./youtubes.js.thumbnails.md)<!-- -->, LikelyBugError&gt;
+Result&lt;[Thumbnails](./youtubes.js.thumbnails.md)<!-- -->, [LikelyBugError](./youtubes.js.likelybugerror.md)<!-- -->&gt;
 

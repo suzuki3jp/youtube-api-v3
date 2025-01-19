@@ -1,3 +1,16 @@
+# [0.4.0](https://github.com/suzuki3jp/youtubes.js/compare/v0.3.0...v0.4.0) (2025-01-19)
+
+
+### Bug Fixes
+
+* Add missing error class and type exports ([6d828ca](https://github.com/suzuki3jp/youtubes.js/commit/6d828ca5734bae7ff1947045924c596b54ba5e11))
+* Update copyright year in LICENSE file ([3ce85d1](https://github.com/suzuki3jp/youtubes.js/commit/3ce85d12af4ea99ec5cd9b9e7b86d379c6d5e3de))
+
+
+### Features
+
+* **PlaylistManager:** Support `playlists.update` endpoint ([8d67df9](https://github.com/suzuki3jp/youtubes.js/commit/8d67df97253760e6bfec9b99e6766fe22cfbd994))
+
 # [0.3.0](https://github.com/suzuki3jp/youtubes.js/compare/v0.2.0...v0.3.0) (2025-01-19)
 
 

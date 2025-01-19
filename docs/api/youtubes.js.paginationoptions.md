@@ -60,7 +60,7 @@ T
 
 </td><td>
 
-(token: string) =&gt; Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;T&gt;, YouTubesJsErrors&gt;&gt;
+(token: string) =&gt; Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;T&gt;, [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt;&gt;
 
 
 </td><td>

@@ -13,7 +13,7 @@ next(): Promise<Result<Pagination<T>, YouTubesJsErrors> | null>;
 ```
 **Returns:**
 
-Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;T&gt;, YouTubesJsErrors&gt; \| null&gt;
+Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;T&gt;, [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt; \| null&gt;
 
 The next page. If there is no next page, returns `null`<!-- -->.
 
@@ -28,9 +28,11 @@ const oauth = new StaticOAuthProvider({
 });
 const client = new ApiClient({ oauth });
 
-const playlists = await client.playlists.getMine();
+
+// THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+const playlists = (await client.playlists.getMine()).throw();
 console.log(playlists.data); // The first page of playlists
-const nextPage = await playlists.next();
+const nextPage = (await playlists.next()).throw();
 console.log(nextPage?.data); // The second page of playlists or null if there is no next page
 ```
 

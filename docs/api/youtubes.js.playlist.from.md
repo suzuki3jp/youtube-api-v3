@@ -59,5 +59,5 @@ Logger
 </tbody></table>
 **Returns:**
 
-Result&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->, LikelyBugError&gt;
+Result&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->, [LikelyBugError](./youtubes.js.likelybugerror.md)<!-- -->&gt;
 

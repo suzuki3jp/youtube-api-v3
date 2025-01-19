@@ -69,7 +69,7 @@ _(Optional)_ The token for pagination.
 </tbody></table>
 **Returns:**
 
-Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;, YouTubesJsErrors&gt;&gt;
+Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;, [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt;&gt;
 
 ## Example
 

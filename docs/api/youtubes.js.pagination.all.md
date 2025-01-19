@@ -13,7 +13,7 @@ all(): Promise<Result<T[], YouTubesJsErrors>>;
 ```
 **Returns:**
 
-Promise&lt;Result&lt;T\[\], YouTubesJsErrors&gt;&gt;
+Promise&lt;Result&lt;T\[\], [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt;&gt;
 
 All pages data in an array. If several items are in a page, this method will return a 2D array. Use `flat()` to convert it to a 1D array.
 
@@ -28,7 +28,8 @@ const oauth = new StaticOAuthProvider({
 });
 const client = new ApiClient({ oauth });
 
-const playlists = await client.playlists.getMine();
-const allPlaylists = (await playlists.all()).flat();
+// THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+const playlists = (await client.playlists.getMine()).throw();
+const allPlaylists = (await playlists.all()).throw().flat();
 ```
 

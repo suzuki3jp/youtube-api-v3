@@ -53,5 +53,5 @@ Options for creating a playlist.
 </tbody></table>
 **Returns:**
 
-Promise&lt;Result&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->, YouTubesJsErrors&gt;&gt;
+Promise&lt;Result&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->, [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt;&gt;
 
