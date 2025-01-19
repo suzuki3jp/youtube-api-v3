@@ -5,6 +5,7 @@ export { Thumbnail, Thumbnails } from "./entities/thumbnails";
 export type {
     PlaylistManager,
     CreatePlaylistOptions,
+    UpdatePlaylistOptions,
 } from "./managers/PlaylistManager";
 
 export { ApiClient, ApiClientOptions } from "./ApiClient";
