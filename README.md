@@ -17,6 +17,7 @@
 - [Highlights](#highlights)
 - [Quick Start](#quick-start)
 - [Introduction](/docs/01-introduction.md)
+- [Use Cases](/docs/02-usecases.md)
 - [Reference](/docs/api/youtubes.js.md)
 - [Supported endpoints](#supported-endpoints)
 - [License](#license)
