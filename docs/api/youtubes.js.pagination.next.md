@@ -9,11 +9,11 @@ Fetches the next page. - \*\*NOTE\*\*: This method will use the same quotas as t
 **Signature:**
 
 ```typescript
-next(): Promise<Pagination<T> | null>;
+next(): Promise<Result<Pagination<T>, YouTubesJsErrors> | null>;
 ```
 **Returns:**
 
-Promise&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;T&gt; \| null&gt;
+Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;T&gt;, YouTubesJsErrors&gt; \| null&gt;
 
 The next page. If there is no next page, returns `null`<!-- -->.
 

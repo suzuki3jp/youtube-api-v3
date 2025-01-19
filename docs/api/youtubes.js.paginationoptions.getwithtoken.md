@@ -7,5 +7,5 @@
 **Signature:**
 
 ```typescript
-getWithToken: (token: string) => Promise<Pagination<T>>;
+getWithToken: (token: string) => Promise<Result<Pagination<T>, YouTubesJsErrors>>;
 ```

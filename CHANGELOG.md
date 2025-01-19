@@ -1,3 +1,15 @@
+# [0.3.0](https://github.com/suzuki3jp/youtubes.js/compare/v0.2.0...v0.3.0) (2025-01-19)
+
+
+### Bug Fixes
+
+* **Pagination:** Improve nullish checks for resultsPerPage and totalResults in Pagination class ([aaeae08](https://github.com/suzuki3jp/youtubes.js/commit/aaeae082364668e1d721c1594315eed3851858f0))
+
+
+### Features
+
+* Implement Result-based error handling ([6e1aaf0](https://github.com/suzuki3jp/youtubes.js/commit/6e1aaf0f15750833ddc273b55519cb2893ef482a))
+
 # [0.2.0](https://github.com/suzuki3jp/youtubes.js/compare/v0.1.2...v0.2.0) (2025-01-18)
 
 

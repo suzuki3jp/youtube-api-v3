@@ -9,11 +9,11 @@ Fetches the previous page. - \*\*NOTE\*\*: This method will use the same quotas 
 **Signature:**
 
 ```typescript
-prev(): Promise<Pagination<T> | null>;
+prev(): Promise<Result<Pagination<T>, YouTubesJsErrors> | null>;
 ```
 **Returns:**
 
-Promise&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;T&gt; \| null&gt;
+Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;T&gt;, YouTubesJsErrors&gt; \| null&gt;
 
 The previous page. If there is no previous page, returns `null`<!-- -->.
 

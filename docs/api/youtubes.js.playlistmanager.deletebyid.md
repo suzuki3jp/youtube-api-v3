@@ -4,7 +4,9 @@
 
 ## PlaylistManager.deleteById() method
 
-Deletes a playlist by its ID. - This operation uses 50 quota units.
+Deletes a playlist by its ID.
+
+- This operation uses 50 quota units.
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/delete)
 

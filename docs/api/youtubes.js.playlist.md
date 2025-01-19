@@ -276,4 +276,18 @@ Description
 
 
 </td></tr>
+<tr><td>
+
+[fromMany(data, logger)](./youtubes.js.playlist.frommany.md)
+
+
+</td><td>
+
+`static`
+
+
+</td><td>
+
+
+</td></tr>
 </tbody></table>

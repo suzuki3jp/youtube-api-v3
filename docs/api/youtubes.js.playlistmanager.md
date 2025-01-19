@@ -76,7 +76,9 @@ Description
 
 </td><td>
 
-Creates a playlist. - This operation uses 50 quota units. - There is a limit of approximately 10 playlists per day for creation. - For more details, see the issue: https://issuetracker.google.com/issues/255216949
+Creates a playlist.
+
+- This operation uses 50 quota units. - There is a limit of approximately 10 playlists per day for creation. - For more details, see the issue: https://issuetracker.google.com/issues/255216949
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/insert)
 
@@ -92,7 +94,9 @@ Creates a playlist. - This operation uses 50 quota units. - There is a limit of 
 
 </td><td>
 
-Deletes a playlist by its ID. - This operation uses 50 quota units.
+Deletes a playlist by its ID.
+
+- This operation uses 50 quota units.
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/delete)
 
@@ -108,7 +112,9 @@ Deletes a playlist by its ID. - This operation uses 50 quota units.
 
 </td><td>
 
-Fetches the playlists of a channel by its ID. - This operation uses 1 quota unit. - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
+Fetches the playlists of a channel by its ID.
+
+- This operation uses 1 quota unit. - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
 
@@ -124,7 +130,9 @@ Fetches the playlists of a channel by its ID. - This operation uses 1 quota unit
 
 </td><td>
 
-Fetches a playlist by its ID. - This operation uses 1 quota unit.
+Fetches a playlist by its ID.
+
+- This operation uses 1 quota unit. - Note: The YouTube API returns empty data instead of an error when a playlist with the specified ID is not found.
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
 
@@ -140,7 +148,9 @@ Fetches a playlist by its ID. - This operation uses 1 quota unit.
 
 </td><td>
 
-Fetches the playlists owned by the authenticated user. - This operation uses 1 quota unit.
+Fetches the playlists owned by the authenticated user.
+
+- This operation uses 1 quota unit.
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
 

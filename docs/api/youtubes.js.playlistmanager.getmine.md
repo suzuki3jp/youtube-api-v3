@@ -4,14 +4,16 @@
 
 ## PlaylistManager.getMine() method
 
-Fetches the playlists owned by the authenticated user. - This operation uses 1 quota unit.
+Fetches the playlists owned by the authenticated user.
+
+- This operation uses 1 quota unit.
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 **Signature:**
 
 ```typescript
-getMine(pageToken?: string): Promise<Pagination<Playlist[]>>;
+getMine(pageToken?: string): Promise<Result<Pagination<Playlist[]>, YouTubesJsErrors>>;
 ```
 
 ## Parameters
@@ -51,7 +53,7 @@ _(Optional)_ The token for pagination.
 </tbody></table>
 **Returns:**
 
-Promise&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;&gt;
+Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;, YouTubesJsErrors&gt;&gt;
 
 ## Example
 
@@ -64,7 +66,7 @@ const oauth = new StaticOAuthProvider({
 });
 
 const client = new ApiClient({ oauth });
-const playlists = await client.playlists.getMine();
-console.log(playlists.data); // Playlist[]
+// THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+const playlists = (await client.playlists.getMine()).throw(); // Pagination<Playlist[]>
 ```
 

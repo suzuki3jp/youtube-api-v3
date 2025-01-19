@@ -9,7 +9,7 @@ Generates a `Thumbnails` instance from the YouTube API raw data.
 **Signature:**
 
 ```typescript
-static from(data: youtube_v3.Schema$ThumbnailDetails, logger: Logger): Result<Thumbnails, string>;
+static from(data: youtube_v3.Schema$ThumbnailDetails, logger: Logger): Result<Thumbnails, LikelyBugError>;
 ```
 
 ## Parameters
@@ -63,5 +63,5 @@ Logger
 </tbody></table>
 **Returns:**
 
-Result&lt;[Thumbnails](./youtubes.js.thumbnails.md)<!-- -->, string&gt;
+Result&lt;[Thumbnails](./youtubes.js.thumbnails.md)<!-- -->, LikelyBugError&gt;
 

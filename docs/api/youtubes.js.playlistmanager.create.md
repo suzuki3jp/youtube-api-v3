@@ -4,14 +4,16 @@
 
 ## PlaylistManager.create() method
 
-Creates a playlist. - This operation uses 50 quota units. - There is a limit of approximately 10 playlists per day for creation. - For more details, see the issue: https://issuetracker.google.com/issues/255216949
+Creates a playlist.
+
+- This operation uses 50 quota units. - There is a limit of approximately 10 playlists per day for creation. - For more details, see the issue: https://issuetracker.google.com/issues/255216949
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/insert)
 
 **Signature:**
 
 ```typescript
-create(options: CreatePlaylistOptions): Promise<Playlist>;
+create(options: CreatePlaylistOptions): Promise<Result<Playlist, YouTubesJsErrors>>;
 ```
 
 ## Parameters
@@ -51,5 +53,5 @@ Options for creating a playlist.
 </tbody></table>
 **Returns:**
 
-Promise&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->&gt;
+Promise&lt;Result&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->, YouTubesJsErrors&gt;&gt;
 

@@ -9,11 +9,11 @@ Fetches all pages data. - \*\*NOTE\*\*: This method may consume unnecessary quot
 **Signature:**
 
 ```typescript
-all(): Promise<T[]>;
+all(): Promise<Result<T[], YouTubesJsErrors>>;
 ```
 **Returns:**
 
-Promise&lt;T\[\]&gt;
+Promise&lt;Result&lt;T\[\], YouTubesJsErrors&gt;&gt;
 
 All pages data in an array. If several items are in a page, this method will return a 2D array. Use `flat()` to convert it to a 1D array.
 

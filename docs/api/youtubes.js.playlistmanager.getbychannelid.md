@@ -4,14 +4,16 @@
 
 ## PlaylistManager.getByChannelId() method
 
-Fetches the playlists of a channel by its ID. - This operation uses 1 quota unit. - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
+Fetches the playlists of a channel by its ID.
+
+- This operation uses 1 quota unit. - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 **Signature:**
 
 ```typescript
-getByChannelId(id: string, pageToken?: string): Promise<Pagination<Playlist[]>>;
+getByChannelId(id: string, pageToken?: string): Promise<Result<Pagination<Playlist[]>, YouTubesJsErrors>>;
 ```
 
 ## Parameters
@@ -67,7 +69,7 @@ _(Optional)_ The token for pagination.
 </tbody></table>
 **Returns:**
 
-Promise&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;&gt;
+Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;, YouTubesJsErrors&gt;&gt;
 
 ## Example
 
@@ -80,7 +82,7 @@ const oauth = new StaticOAuthProvider({
 });
 const client = new ApiClient({ oauth });
 
-const playlists = await client.playlists.getByChannelId("CHANNEL_ID");
-console.log(playlists.data); // Playlist[]
+// THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+const playlists = (await client.playlists.getByChannelId("CHANNEL_ID")).throw(); // Pagination<Playlist[]>
 ```
 

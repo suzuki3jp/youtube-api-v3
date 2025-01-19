@@ -4,14 +4,16 @@
 
 ## PlaylistManager.getByIds() method
 
-Fetches a playlist by its ID. - This operation uses 1 quota unit.
+Fetches a playlist by its ID.
+
+- This operation uses 1 quota unit. - Note: The YouTube API returns empty data instead of an error when a playlist with the specified ID is not found.
 
 \[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 **Signature:**
 
 ```typescript
-getByIds(ids: string[], pageToken?: string): Promise<Pagination<Playlist[]>>;
+getByIds(ids: string[], pageToken?: string): Promise<Result<Pagination<Playlist[]>, YouTubesJsErrors>>;
 ```
 
 ## Parameters
@@ -67,7 +69,7 @@ _(Optional)_ The token for pagination.
 </tbody></table>
 **Returns:**
 
-Promise&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;&gt;
+Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;, YouTubesJsErrors&gt;&gt;
 
 ## Example
 
@@ -80,7 +82,7 @@ const oauth = new StaticOAuthProvider({
 });
 const client = new ApiClient({ oauth });
 
-const playlists = await client.playlists.getByIds(["ID1", "ID2"]);
-console.log(playlists.data); // [Playlist, Playlist]
+// THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+const playlists = (await client.playlists.getByIds(["ID1", "ID2"])).throw(); // Pagination<Playlist[]>
 ```
 
