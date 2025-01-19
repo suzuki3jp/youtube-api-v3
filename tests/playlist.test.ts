@@ -14,35 +14,35 @@ test("Playlist#from", () => {
             {
                 kind: "youtube#playlist",
                 etag: "tUetcgvsazHsEtH69920Qr1V6z8",
-                id: "PLLt-sUPx6jaN8WmXWORKzaT-VJnzw6zgF",
+                id: "PLLt-SAMPLE",
                 snippet: {
                     publishedAt: "2024-10-29T18:32:02.945193Z",
-                    channelId: "UCBZaV3lYDMKM7Y0PF46ON0Q",
+                    channelId: "CHANNEL_ID",
                     title: "Sample",
                     description: "",
                     thumbnails: {
                         default: {
-                            url: "https://i.ytimg.com/vi/H7MKPb9MvZY/default.jpg",
+                            url: "https://i.ytimg.com/vi/DLFKJALKDFJ/default.jpg",
                             width: 120,
                             height: 90,
                         },
                         medium: {
-                            url: "https://i.ytimg.com/vi/H7MKPb9MvZY/mqdefault.jpg",
+                            url: "https://i.ytimg.com/vi/DLFKJALKDFJ/mqdefault.jpg",
                             width: 320,
                             height: 180,
                         },
                         high: {
-                            url: "https://i.ytimg.com/vi/H7MKPb9MvZY/hqdefault.jpg",
+                            url: "https://i.ytimg.com/vi/DLFKJALKDFJ/hqdefault.jpg",
                             width: 480,
                             height: 360,
                         },
                         standard: {
-                            url: "https://i.ytimg.com/vi/H7MKPb9MvZY/sddefault.jpg",
+                            url: "https://i.ytimg.com/vi/DLFKJALKDFJ/sddefault.jpg",
                             width: 640,
                             height: 480,
                         },
                         maxres: {
-                            url: "https://i.ytimg.com/vi/H7MKPb9MvZY/maxresdefault.jpg",
+                            url: "https://i.ytimg.com/vi/DLFKJALKDFJ/maxresdefault.jpg",
                             width: 1280,
                             height: 720,
                         },
@@ -61,36 +61,36 @@ test("Playlist#from", () => {
                 },
                 player: {
                     embedHtml:
-                        '<iframe width="640" height="360" src="http://www.youtube.com/embed/videoseries?list=PLLt-sUPx6jaN8WmXWORKzaT-VJnzw6zgF" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
+                        '<iframe width="640" height="360" src="http://www.youtube.com/embed/videoseries?list=PLLt-SAMPLE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>',
                 },
             },
             new Playlist({
-                id: "PLLt-sUPx6jaN8WmXWORKzaT-VJnzw6zgF",
+                id: "PLLt-SAMPLE",
                 title: "Sample",
                 description: "",
                 thumbnails: new Thumbnails({
                     default: {
-                        url: "https://i.ytimg.com/vi/H7MKPb9MvZY/default.jpg",
+                        url: "https://i.ytimg.com/vi/DLFKJALKDFJ/default.jpg",
                         width: 120,
                         height: 90,
                     },
                     medium: {
-                        url: "https://i.ytimg.com/vi/H7MKPb9MvZY/mqdefault.jpg",
+                        url: "https://i.ytimg.com/vi/DLFKJALKDFJ/mqdefault.jpg",
                         width: 320,
                         height: 180,
                     },
                     high: {
-                        url: "https://i.ytimg.com/vi/H7MKPb9MvZY/hqdefault.jpg",
+                        url: "https://i.ytimg.com/vi/DLFKJALKDFJ/hqdefault.jpg",
                         width: 480,
                         height: 360,
                     },
                     standard: {
-                        url: "https://i.ytimg.com/vi/H7MKPb9MvZY/sddefault.jpg",
+                        url: "https://i.ytimg.com/vi/DLFKJALKDFJ/sddefault.jpg",
                         width: 640,
                         height: 480,
                     },
                     maxres: {
-                        url: "https://i.ytimg.com/vi/H7MKPb9MvZY/maxresdefault.jpg",
+                        url: "https://i.ytimg.com/vi/DLFKJALKDFJ/maxresdefault.jpg",
                         width: 1280,
                         height: 720,
                     },
@@ -98,7 +98,7 @@ test("Playlist#from", () => {
                 privacy: "private",
                 count: 3,
                 publishedAt: new Date("2024-10-29T18:32:02.945193Z"),
-                channelId: "UCBZaV3lYDMKM7Y0PF46ON0Q",
+                channelId: "CHANNEL_ID",
                 channelName: "鈴木",
             }),
         ],
