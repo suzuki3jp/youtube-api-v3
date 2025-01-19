@@ -8,6 +8,7 @@ export type {
 } from "./managers/PlaylistManager";
 
 export { ApiClient, ApiClientOptions } from "./ApiClient";
+export { YouTubesJsErrors, YouTubeApiError, LikelyBugError } from "./errors";
 export {
     StaticCredentials,
     StaticOAuthProvider,

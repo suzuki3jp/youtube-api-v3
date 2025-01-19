@@ -89,9 +89,11 @@ export class Pagination<T> {
      * });
      * const client = new ApiClient({ oauth });
      *
-     * const playlists = await client.playlists.getMine();
+     *
+     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+     * const playlists = (await client.playlists.getMine()).throw();
      * console.log(playlists.data); // The first page of playlists
-     * const prevPage = await playlists.prev();
+     * const prevPage = (await playlists.prev()).throw();
      * console.log(prevPage?.data); // The previous page of playlists or null if there is no previous page
      * ```
      */
@@ -120,9 +122,11 @@ export class Pagination<T> {
      * });
      * const client = new ApiClient({ oauth });
      *
-     * const playlists = await client.playlists.getMine();
+     *
+     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+     * const playlists = (await client.playlists.getMine()).throw();
      * console.log(playlists.data); // The first page of playlists
-     * const nextPage = await playlists.next();
+     * const nextPage = (await playlists.next()).throw();
      * console.log(nextPage?.data); // The second page of playlists or null if there is no next page
      * ```
      */
@@ -149,8 +153,9 @@ export class Pagination<T> {
      * });
      * const client = new ApiClient({ oauth });
      *
-     * const playlists = await client.playlists.getMine();
-     * const allPlaylists = (await playlists.all()).flat();
+     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+     * const playlists = (await client.playlists.getMine()).throw();
+     * const allPlaylists = (await playlists.all()).throw().flat();
      * ```
      */
     public async all(): Promise<Result<T[], YouTubesJsErrors>> {

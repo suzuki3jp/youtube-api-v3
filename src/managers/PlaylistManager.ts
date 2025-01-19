@@ -229,6 +229,53 @@ export class PlaylistManager {
     }
 
     /**
+     * Updates a playlist by its ID.
+     *
+     * - This operation uses 50 quota units.
+     * - [If you are submitting an update request, and your request does not specify a value for a property that already has a value, the property's existing value will be deleted.](https://developers.google.com/youtube/v3/docs/playlists/update#request-body)
+     * - For example, when updating a playlist that has a description set, if you don't specify the `description`, it will be set to an empty string.
+     * - However, for the `privacy` property, it seems to remain unchanged if not specified.
+     *
+     * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/update)
+     * @param options - Options for updating a playlist.
+     * @returns - The updated playlist.
+     */
+    public async updateById(
+        options: UpdatePlaylistOptions,
+    ): Promise<Result<Playlist, YouTubesJsErrors>> {
+        const {
+            id,
+            title,
+            description,
+            privacy,
+            defaultLanguage,
+            localizations,
+        } = options;
+        const rawData = await wrapGaxios(
+            this.client.playlists.update({
+                part: this.ALL_PARTS,
+                requestBody: {
+                    id,
+                    snippet: {
+                        title,
+                        description,
+                        defaultLanguage,
+                    },
+                    status: {
+                        privacyStatus: privacy,
+                    },
+                    localizations,
+                },
+            }),
+        );
+        if (rawData.isErr()) return Err(rawData.data);
+        const playlist = Playlist.from(rawData.data, this.logger);
+        if (playlist.isErr()) return Err(playlist.data);
+
+        return Ok(playlist.data);
+    }
+
+    /**
      * Deletes a playlist by its ID.
      *
      * - This operation uses 50 quota units.
@@ -267,6 +314,20 @@ export interface CreatePlaylistOptions {
     /**
      * The localized metadata for the playlist.
      */
+    localizations?: Record<string, { title: string; description: string }>;
+}
+
+export interface UpdatePlaylistOptions {
+    id: string;
+
+    title: string;
+
+    description?: string;
+
+    privacy?: Privacy;
+
+    defaultLanguage?: string;
+
     localizations?: Record<string, { title: string; description: string }>;
 }
 
