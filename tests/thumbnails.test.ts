@@ -3,11 +3,15 @@ import { describe, expect, test } from "vitest";
 
 import { Logger } from "../src/Logger";
 import { Thumbnails } from "../src/entities/thumbnails";
+import { LikelyBugError } from "../src/errors";
 
 const logger = new Logger({ name: "ThumbnailsTest", level: "ERROR" });
 
 describe("Thumbnails", () => {
-    const dummy: [youtube_v3.Schema$ThumbnailDetails, Thumbnails | string][] = [
+    const dummy: [
+        youtube_v3.Schema$ThumbnailDetails,
+        Thumbnails | LikelyBugError,
+    ][] = [
         // Valid data
         [
             {
@@ -326,7 +330,9 @@ describe("Thumbnails", () => {
                     height: 720,
                 },
             },
-            "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            new LikelyBugError(
+                "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            ),
         ],
         [
             {
@@ -354,7 +360,9 @@ describe("Thumbnails", () => {
                     height: 720,
                 },
             },
-            "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            new LikelyBugError(
+                "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            ),
         ],
         [
             {
@@ -382,7 +390,9 @@ describe("Thumbnails", () => {
                     width: 1280,
                 },
             },
-            "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            new LikelyBugError(
+                "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
+            ),
         ],
     ];
 

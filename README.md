@@ -24,7 +24,7 @@
 ## Highlights
 - Full object-oriented architecture
 - Complete TypeScript type definitions
-- Robust error handling with `Result` type (coming soon)
+- Robust error handling with `Result` type
 - Built-in request pagination
 
 ## Quick Start

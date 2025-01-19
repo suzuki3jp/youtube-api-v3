@@ -1,12 +1,18 @@
 import { google } from "googleapis";
+import { Err, Ok, type Result } from "result4js";
 
 import type { Logger } from "../Logger";
 import type { OAuthProviders } from "../OAuthProvider";
 import { Pagination } from "../Pagination";
-import { LIKELY_BUG } from "../constants";
 import { Playlist } from "../entities/playlist";
 import type { Privacy } from "../entities/privacy";
+import {
+    LikelyBugError,
+    type YouTubesJsErrors,
+    handleYouTubeApiError,
+} from "../errors";
 import type { NativeClient } from "../types";
+import { wrapGaxios } from "../utils";
 
 /**
  * Manager for playlist endpoints.
@@ -30,6 +36,7 @@ export class PlaylistManager {
 
     /**
      * Fetches the playlists owned by the authenticated user.
+     *
      * - This operation uses 1 quota unit.
      *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
@@ -43,37 +50,45 @@ export class PlaylistManager {
      * });
      *
      * const client = new ApiClient({ oauth });
-     * const playlists = await client.playlists.getMine();
-     * console.log(playlists.data); // Playlist[]
+     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+     * const playlists = (await client.playlists.getMine()).throw(); // Pagination<Playlist[]>
      * ```
      */
-    public async getMine(pageToken?: string): Promise<Pagination<Playlist[]>> {
-        const rawData = await this.client.playlists.list({
-            part: this.ALL_PARTS,
-            mine: true,
-            maxResults: this.MAX_RESULTS,
-            pageToken,
-        });
-        const playlists = rawData.data.items?.map((item) =>
-            Playlist.from(item, this.logger),
+    public async getMine(
+        pageToken?: string,
+    ): Promise<Result<Pagination<Playlist[]>, YouTubesJsErrors>> {
+        const rawData = await wrapGaxios(
+            this.client.playlists.list({
+                part: this.ALL_PARTS,
+                mine: true,
+                maxResults: this.MAX_RESULTS,
+                pageToken,
+            }),
         );
-        if (!playlists || playlists.some((playlist) => playlist.isErr()))
-            throw new Error(LIKELY_BUG);
+        if (rawData.isErr()) return Err(rawData.data);
+        if (!rawData.data.items)
+            return Err(new LikelyBugError("The raw data is missing items."));
+        const playlists = Playlist.fromMany(rawData.data.items, this.logger);
+        if (playlists.isErr()) return Err(playlists.data);
 
-        return new Pagination({
-            data: playlists.map((playlist) => playlist.throwMap(LIKELY_BUG)),
-            logger: this.logger,
-            prevToken: rawData.data.prevPageToken,
-            nextToken: rawData.data.nextPageToken,
-            resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
-            totalResults: rawData.data.pageInfo?.totalResults,
-            getWithToken: (token) => this.getMine(token),
-        });
+        return Ok(
+            new Pagination({
+                data: playlists.data,
+                logger: this.logger,
+                prevToken: rawData.data.prevPageToken,
+                nextToken: rawData.data.nextPageToken,
+                resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
+                totalResults: rawData.data.pageInfo?.totalResults,
+                getWithToken: (token) => this.getMine(token),
+            }),
+        );
     }
 
     /**
      * Fetches a playlist by its ID.
+     *
      * - This operation uses 1 quota unit.
+     * - Note: The YouTube API returns empty data instead of an error when a playlist with the specified ID is not found.
      *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
      * @param ids - The IDs of the playlist.
@@ -87,39 +102,44 @@ export class PlaylistManager {
      * });
      * const client = new ApiClient({ oauth });
      *
-     * const playlists = await client.playlists.getByIds(["ID1", "ID2"]);
-     * console.log(playlists.data); // [Playlist, Playlist]
+     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+     * const playlists = (await client.playlists.getByIds(["ID1", "ID2"])).throw(); // Pagination<Playlist[]>
      * ```
      */
     public async getByIds(
         ids: string[],
         pageToken?: string,
-    ): Promise<Pagination<Playlist[]>> {
-        const rawData = await this.client.playlists.list({
-            part: this.ALL_PARTS,
-            id: ids,
-            maxResults: this.MAX_RESULTS,
-            pageToken,
-        });
-        const playlists = rawData.data.items?.map((item) =>
-            Playlist.from(item, this.logger),
+    ): Promise<Result<Pagination<Playlist[]>, YouTubesJsErrors>> {
+        const rawData = await wrapGaxios(
+            this.client.playlists.list({
+                part: this.ALL_PARTS,
+                id: ids,
+                maxResults: this.MAX_RESULTS,
+                pageToken,
+            }),
         );
-        if (!playlists || playlists.some((playlist) => playlist.isErr()))
-            throw new Error(LIKELY_BUG);
+        if (rawData.isErr()) return Err(rawData.data);
+        if (!rawData.data.items)
+            return Err(new LikelyBugError("The raw data is missing items."));
+        const playlists = Playlist.fromMany(rawData.data.items, this.logger);
+        if (playlists.isErr()) return Err(playlists.data);
 
-        return new Pagination({
-            data: playlists.map((playlist) => playlist.throwMap(LIKELY_BUG)),
-            logger: this.logger,
-            prevToken: rawData.data.prevPageToken,
-            nextToken: rawData.data.nextPageToken,
-            resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
-            totalResults: rawData.data.pageInfo?.totalResults,
-            getWithToken: (token) => this.getByIds(ids, token),
-        });
+        return Ok(
+            new Pagination({
+                data: playlists.data,
+                logger: this.logger,
+                prevToken: rawData.data.prevPageToken,
+                nextToken: rawData.data.nextPageToken,
+                resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
+                totalResults: rawData.data.pageInfo?.totalResults,
+                getWithToken: (token) => this.getByIds(ids, token),
+            }),
+        );
     }
 
     /**
      * Fetches the playlists of a channel by its ID.
+     *
      * - This operation uses 1 quota unit.
      * - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
      *
@@ -135,39 +155,44 @@ export class PlaylistManager {
      * });
      * const client = new ApiClient({ oauth });
      *
-     * const playlists = await client.playlists.getByChannelId("CHANNEL_ID");
-     * console.log(playlists.data); // Playlist[]
+     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
+     * const playlists = (await client.playlists.getByChannelId("CHANNEL_ID")).throw(); // Pagination<Playlist[]>
      * ```
      */
     public async getByChannelId(
         id: string,
         pageToken?: string,
-    ): Promise<Pagination<Playlist[]>> {
-        const rawData = await this.client.playlists.list({
-            part: this.ALL_PARTS,
-            channelId: id,
-            maxResults: this.MAX_RESULTS,
-            pageToken,
-        });
-        const playlists = rawData.data.items?.map((item) =>
-            Playlist.from(item, this.logger),
+    ): Promise<Result<Pagination<Playlist[]>, YouTubesJsErrors>> {
+        const rawData = await wrapGaxios(
+            this.client.playlists.list({
+                part: this.ALL_PARTS,
+                channelId: id,
+                maxResults: this.MAX_RESULTS,
+                pageToken,
+            }),
         );
-        if (!playlists || playlists.some((playlist) => playlist.isErr()))
-            throw new Error(LIKELY_BUG);
+        if (rawData.isErr()) return Err(rawData.data);
+        if (!rawData.data.items)
+            return Err(new LikelyBugError("The raw data is missing items."));
+        const playlists = Playlist.fromMany(rawData.data.items, this.logger);
+        if (playlists.isErr()) return Err(playlists.data);
 
-        return new Pagination({
-            data: playlists.map((playlist) => playlist.throwMap(LIKELY_BUG)),
-            logger: this.logger,
-            prevToken: rawData.data.prevPageToken,
-            nextToken: rawData.data.nextPageToken,
-            resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
-            totalResults: rawData.data.pageInfo?.totalResults,
-            getWithToken: (token) => this.getByChannelId(id, token),
-        });
+        return Ok(
+            new Pagination({
+                data: playlists.data,
+                logger: this.logger,
+                prevToken: rawData.data.prevPageToken,
+                nextToken: rawData.data.nextPageToken,
+                resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
+                totalResults: rawData.data.pageInfo?.totalResults,
+                getWithToken: (token) => this.getByChannelId(id, token),
+            }),
+        );
     }
 
     /**
      * Creates a playlist.
+     *
      * - This operation uses 50 quota units.
      * - There is a limit of approximately 10 playlists per day for creation.
      * - For more details, see the issue: https://issuetracker.google.com/issues/255216949
@@ -175,29 +200,37 @@ export class PlaylistManager {
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/insert)
      * @param options - Options for creating a playlist.
      */
-    public async create(options: CreatePlaylistOptions): Promise<Playlist> {
+    public async create(
+        options: CreatePlaylistOptions,
+    ): Promise<Result<Playlist, YouTubesJsErrors>> {
         const { title, description, privacy, defaultLanguage, localizations } =
             options;
-        const rawData = await this.client.playlists.insert({
-            part: this.ALL_PARTS,
-            requestBody: {
-                snippet: {
-                    title,
-                    description,
-                    defaultLanguage,
+        const rawData = await wrapGaxios(
+            this.client.playlists.insert({
+                part: this.ALL_PARTS,
+                requestBody: {
+                    snippet: {
+                        title,
+                        description,
+                        defaultLanguage,
+                    },
+                    status: {
+                        privacyStatus: privacy,
+                    },
+                    localizations,
                 },
-                status: {
-                    privacyStatus: privacy,
-                },
-                localizations,
-            },
-        });
+            }),
+        );
+        if (rawData.isErr()) return Err(rawData.data);
         const playlist = Playlist.from(rawData.data, this.logger);
-        return playlist.throw();
+        if (playlist.isErr()) return Err(playlist.data);
+
+        return Ok(playlist.data);
     }
 
     /**
      * Deletes a playlist by its ID.
+     *
      * - This operation uses 50 quota units.
      *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/delete)

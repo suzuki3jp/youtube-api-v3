@@ -1,5 +1,8 @@
+import { Err, Ok, type Result } from "result4js";
+
 import type { Logger } from "./Logger";
 import { LIKELY_BUG } from "./constants";
+import type { YouTubesJsErrors } from "./errors";
 import { isNullish } from "./utils";
 
 /**
@@ -38,7 +41,9 @@ export class Pagination<T> {
      * Fetches the page with the given token.
      * @param token - The token of the page to fetch.
      */
-    private getWithToken: (token: string) => Promise<Pagination<T>>;
+    private getWithToken: (
+        token: string,
+    ) => Promise<Result<Pagination<T>, YouTubesJsErrors>>;
 
     private logger: Logger;
 
@@ -90,7 +95,10 @@ export class Pagination<T> {
      * console.log(prevPage?.data); // The previous page of playlists or null if there is no previous page
      * ```
      */
-    public async prev(): Promise<Pagination<T> | null> {
+    public async prev(): Promise<Result<
+        Pagination<T>,
+        YouTubesJsErrors
+    > | null> {
         if (!this.prevToken) return null;
         const data = await this.getWithToken(this.prevToken);
         return data;
@@ -118,7 +126,10 @@ export class Pagination<T> {
      * console.log(nextPage?.data); // The second page of playlists or null if there is no next page
      * ```
      */
-    public async next(): Promise<Pagination<T> | null> {
+    public async next(): Promise<Result<
+        Pagination<T>,
+        YouTubesJsErrors
+    > | null> {
         if (!this.nextToken) return null;
         const data = await this.getWithToken(this.nextToken);
         return data;
@@ -142,23 +153,25 @@ export class Pagination<T> {
      * const allPlaylists = (await playlists.all()).flat();
      * ```
      */
-    public async all(): Promise<T[]> {
+    public async all(): Promise<Result<T[], YouTubesJsErrors>> {
         const result: T[] = [];
         result.push(this.data);
 
         let prev = await this.prev();
         while (prev) {
-            result.unshift(prev.data);
-            prev = await prev.prev();
+            if (prev.isErr()) return Err(prev.data);
+            result.unshift(prev.data.data);
+            prev = await prev.data.prev();
         }
 
         let next = await this.next();
         while (next) {
-            result.push(next.data);
-            next = await next.next();
+            if (next.isErr()) return Err(next.data);
+            result.push(next.data.data);
+            next = await next.data.next();
         }
 
-        return result;
+        return Ok(result);
     }
 }
 
@@ -169,5 +182,7 @@ export interface PaginationOptions<T> {
     nextToken?: string | null;
     resultsPerPage?: number | null;
     totalResults?: number | null;
-    getWithToken: (token: string) => Promise<Pagination<T>>;
+    getWithToken: (
+        token: string,
+    ) => Promise<Result<Pagination<T>, YouTubesJsErrors>>;
 }
