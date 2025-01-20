@@ -1,3 +1,4 @@
+export { PlaylistItem } from "./entities/playlist-item";
 export { Playlist } from "./entities/playlist";
 export { Privacy } from "./entities/privacy";
 export { Thumbnail, Thumbnails } from "./entities/thumbnails";
@@ -7,6 +8,7 @@ export type {
     CreatePlaylistOptions,
     UpdatePlaylistOptions,
 } from "./managers/PlaylistManager";
+export type { PlaylistItemManager } from "./managers/PlaylistItemManager";
 
 export { ApiClient, ApiClientOptions } from "./ApiClient";
 export { YouTubesJsErrors, YouTubeApiError, LikelyBugError } from "./errors";
