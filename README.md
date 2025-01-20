@@ -8,6 +8,8 @@
 > _**WIP**_  
 > This project is in the early stages of development.  
 > There may be many bugs remaining.
+>
+> Note: `youtubes.js` follows [semantic versioning](https://semver.org) (MAJOR.MINOR.PATCH). Between versions `0.4.0` and `1.0.0`, `MINOR` version updates may include breaking changes and non-backwards compatible features, while `PATCH` updates will only include backwards compatible changes and fixes.
 
 ![NPM Version](https://img.shields.io/npm/v/youtubes.js)
 ![NPM Downloads](https://img.shields.io/npm/dm/youtubes.js)
