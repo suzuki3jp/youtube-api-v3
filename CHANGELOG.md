@@ -1,3 +1,5 @@
+## [0.4.2](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.1...v0.4.2) (2025-01-20)
+
 ## [0.4.1](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.0...v0.4.1) (2025-01-19)
 
 
