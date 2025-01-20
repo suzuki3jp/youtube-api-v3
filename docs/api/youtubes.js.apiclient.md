@@ -71,6 +71,25 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[playlistItems](./youtubes.js.apiclient.playlistitems.md)
+
+
+</td><td>
+
+
+</td><td>
+
+[PlaylistItemManager](./youtubes.js.playlistitemmanager.md)
+
+
+</td><td>
+
+A manager for playlist items. Provides methods for fetching and manipulating playlist items.
+
+
+</td></tr>
+<tr><td>
+
 [playlists](./youtubes.js.apiclient.playlists.md)
 
 

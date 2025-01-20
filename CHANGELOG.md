@@ -1,3 +1,16 @@
+## [0.4.3](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.2...v0.4.3) (2025-01-20)
+
+
+### Bug Fixes
+
+* **PlaylistItemManager:** Prevent `tsdoc-param-tag-missing-hyphen` error in `api-extractor` CI job ([bb64f89](https://github.com/suzuki3jp/youtubes.js/commit/bb64f896415e129d726df2d306c4d232267a834a))
+* Prevent `ErrorEXError [JSONError]: JSON Error in /home/runner/work/youtubes.js/youtubes.js/.releaserc.json` in CD ([0cd2870](https://github.com/suzuki3jp/youtubes.js/commit/0cd2870d56ff2b5115f5c900a3480ed6e02e77e6))
+
+
+### Features
+
+* **PlaylistItemManager:** Support `playlistItems.list` by playlistId ([005ec48](https://github.com/suzuki3jp/youtubes.js/commit/005ec483632ff278b08eb9319ad6fe0c45976ecc))
+
 ## [0.4.2](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.1...v0.4.2) (2025-01-20)
 
 ## [0.4.1](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.0...v0.4.1) (2025-01-19)

@@ -67,6 +67,19 @@ Represents a YouTube playlist resource.
 </td></tr>
 <tr><td>
 
+[PlaylistItemManager](./youtubes.js.playlistitemmanager.md)
+
+
+</td><td>
+
+A manager of playlist items belonging to a client. Provides methods for `/youtube/v3/playlistItems`
+
+\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlistItems)
+
+
+</td></tr>
+<tr><td>
+
 [PlaylistManager](./youtubes.js.playlistmanager.md)
 
 
@@ -213,6 +226,15 @@ Description
 <tr><td>
 
 [OAuthProviders](./youtubes.js.oauthproviders.md)
+
+
+</td><td>
+
+
+</td></tr>
+<tr><td>
+
+[PlaylistItem](./youtubes.js.playlistitem.md)
 
 
 </td><td>
