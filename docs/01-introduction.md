@@ -38,7 +38,7 @@ main();
 ```
 
 ## Handling errors
-All public methods of `youtube.js` return `Result` of [`result4js`](https://github.com/suzuki3jp/result4js).  
+All public methods of `youtubes.js` return `Result` of [`result4js`](https://github.com/suzuki3jp/result4js).  
 Using `Result` enables type-safe error handling.
 > If you want to abandon type safety and perform dangerous error handling, you can use [`Result#throw`](https://github.com/suzuki3jp/result4js?tab=readme-ov-file#usage).
 
