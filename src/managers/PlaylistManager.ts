@@ -6,11 +6,7 @@ import type { OAuthProviders } from "../OAuthProvider";
 import { Pagination } from "../Pagination";
 import { Playlist } from "../entities/playlist";
 import type { Privacy } from "../entities/privacy";
-import {
-    LikelyBugError,
-    type YouTubesJsErrors,
-    handleYouTubeApiError,
-} from "../errors";
+import { LikelyBugError, type YouTubesJsErrors } from "../errors";
 import type { NativeClient } from "../types";
 import { wrapGaxios } from "../utils";
 
