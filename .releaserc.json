@@ -6,6 +6,8 @@
             {
                 "releaseRules": [
                     { "type": "docs", "release": "patch" },
+                    // TODO: Remove the following lines when youtube.js becomes v1
+                    { "type": "feat", "release": "patch" },
                     { "breaking": true, "release": "minor" }
                 ]
             }
