@@ -38,8 +38,8 @@ export class PlaylistItemManager {
      * - The operation uses 1 quota unit.
      *
      * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlistItems/list)
-     * @param playlistId
-     * @param pageToken
+     * @param playlistId - The ID of the playlist to retrieve items from.
+     * @param pageToken - The page token to use for pagination.
      * @returns
      */
     public async getByPlaylistId(
