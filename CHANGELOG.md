@@ -1,3 +1,10 @@
+## [0.4.4](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.3...v0.4.4) (2025-01-21)
+
+
+### Features
+
+* **PlaylistItemManager:** Support `playlistItems.insert` endpoint ([707e4ea](https://github.com/suzuki3jp/youtubes.js/commit/707e4eab64d8ae7f0d993b11db92886ff6850126))
+
 ## [0.4.3](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.2...v0.4.3) (2025-01-20)
 
 

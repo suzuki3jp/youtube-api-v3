@@ -68,6 +68,22 @@ Description
 </th></tr></thead>
 <tbody><tr><td>
 
+[create(options)](./youtubes.js.playlistitemmanager.create.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Adds a item to a playlist.
+
+- The operation uses 50 quota units.
+
+
+</td></tr>
+<tr><td>
+
 [getByPlaylistId(playlistId, pageToken)](./youtubes.js.playlistitemmanager.getbyplaylistid.md)
 
 
