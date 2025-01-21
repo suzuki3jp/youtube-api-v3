@@ -4,7 +4,7 @@
 
 ## Pagination.prev() method
 
-Fetches the previous page. - \*\*NOTE\*\*: This method will use the same quotas as the original request. - Normally, GET requests use a quota of 1 unit, while other methods use 50 units. - However, some heavy methods use more than 50 units. - See more details on the \[YouTube Data API reference\](https://developers.google.com/youtube/v3/determine\_quota\_cost)
+Fetches the previous page. - \*\*NOTE\*\*: This method will use the same quotas as the original request. - Normally, GET requests use a quota of 1 unit, while other methods use 50 units. - However, some heavy methods use more than 50 units. - See more details on the [YouTube Data API reference](https://developers.google.com/youtube/v3/determine_quota_cost)
 
 **Signature:**
 

@@ -6,7 +6,7 @@
 
 Manager for playlist endpoints. Provides methods for `/youtube/v3/playlists`<!-- -->.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists)
 
 **Signature:**
 
@@ -80,7 +80,7 @@ Creates a playlist.
 
 - This operation uses 50 quota units. - There is a limit of approximately 10 playlists per day for creation. - For more details, see the issue: https://issuetracker.google.com/issues/255216949
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/insert)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/insert)
 
 
 </td></tr>
@@ -98,7 +98,7 @@ Deletes a playlist by its ID.
 
 - This operation uses 50 quota units.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/delete)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/delete)
 
 
 </td></tr>
@@ -116,7 +116,7 @@ Fetches the playlists of a channel by its ID.
 
 - This operation uses 1 quota unit. - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 
 </td></tr>
@@ -134,7 +134,7 @@ Fetches a playlist by its ID.
 
 - This operation uses 1 quota unit. - Note: The YouTube API returns empty data instead of an error when a playlist with the specified ID is not found.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 
 </td></tr>
@@ -152,7 +152,7 @@ Fetches the playlists owned by the authenticated user.
 
 - This operation uses 1 quota unit.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 
 </td></tr>
@@ -170,7 +170,7 @@ Updates a playlist by its ID.
 
 - This operation uses 50 quota units. - \[If you are submitting an update request, and your request does not specify a value for a property that already has a value, the property's existing value will be deleted.\](https://developers.google.com/youtube/v3/docs/playlists/update\#request-body) - For example, when updating a playlist that has a description set, if you don't specify the `description`<!-- -->, it will be set to an empty string. - However, for the `privacy` property, it seems to remain unchanged if not specified.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/update)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/update)
 
 
 </td></tr>

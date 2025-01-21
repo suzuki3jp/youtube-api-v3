@@ -8,7 +8,7 @@ Fetches a playlist by its ID.
 
 - This operation uses 1 quota unit. - Note: The YouTube API returns empty data instead of an error when a playlist with the specified ID is not found.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 **Signature:**
 

@@ -8,7 +8,7 @@ Fetches the playlists owned by the authenticated user.
 
 - This operation uses 1 quota unit.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 **Signature:**
 

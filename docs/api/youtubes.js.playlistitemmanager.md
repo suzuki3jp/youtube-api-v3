@@ -6,7 +6,7 @@
 
 A manager of playlist items belonging to a client. Provides methods for `/youtube/v3/playlistItems`
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlistItems)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlistItems)
 
 **Signature:**
 
@@ -96,7 +96,7 @@ Retrieves a list of playlist items by a playlist ID.
 
 - The operation uses 1 quota unit.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlistItems/list)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlistItems/list)
 
 
 </td></tr>

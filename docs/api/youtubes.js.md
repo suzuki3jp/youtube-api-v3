@@ -61,7 +61,7 @@ Provides utility methods for pagination.
 
 Represents a YouTube playlist resource.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists\#resource)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists#resource)
 
 
 </td></tr>
@@ -74,7 +74,7 @@ Represents a YouTube playlist resource.
 
 A manager of playlist items belonging to a client. Provides methods for `/youtube/v3/playlistItems`
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlistItems)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlistItems)
 
 
 </td></tr>
@@ -87,7 +87,7 @@ A manager of playlist items belonging to a client. Provides methods for `/youtub
 
 Manager for playlist endpoints. Provides methods for `/youtube/v3/playlists`<!-- -->.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists)
 
 
 </td></tr>
@@ -111,7 +111,7 @@ An OAuth provider that doesn't refresh the token
 
 Presents the thumbnails of the video or the playlist.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/thumbnails)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/thumbnails)
 
 
 </td></tr>

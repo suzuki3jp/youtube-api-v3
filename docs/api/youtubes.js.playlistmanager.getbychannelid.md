@@ -8,7 +8,7 @@ Fetches the playlists of a channel by its ID.
 
 - This operation uses 1 quota unit. - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlists/list)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 **Signature:**
 

@@ -8,7 +8,7 @@ Retrieves a list of playlist items by a playlist ID.
 
 - The operation uses 1 quota unit.
 
-\[YouTube Data API Reference\](https://developers.google.com/youtube/v3/docs/playlistItems/list)
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlistItems/list)
 
 **Signature:**
 
