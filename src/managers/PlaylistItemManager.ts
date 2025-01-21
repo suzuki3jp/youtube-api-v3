@@ -17,7 +17,7 @@ import { isNullish, wrapGaxios } from "../utils";
  * A manager of playlist items belonging to a client.
  * Provides methods for `/youtube/v3/playlistItems`
  *
- * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlistItems)
+ * {@link https://developers.google.com/youtube/v3/docs/playlistItems | YouTube Data API Reference}
  */
 export class PlaylistItemManager {
     private client: NativeClient;
@@ -38,7 +38,7 @@ export class PlaylistItemManager {
      *
      * - The operation uses 1 quota unit.
      *
-     * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlistItems/list)
+     * {@link https://developers.google.com/youtube/v3/docs/playlistItems/list | YouTube Data API Reference}
      * @param playlistId - The ID of the playlist to retrieve items from.
      * @param pageToken - The page token to use for pagination.
      * @returns

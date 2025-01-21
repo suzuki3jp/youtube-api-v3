@@ -8,7 +8,7 @@ import { isNullish } from "../utils";
 /**
  * Presents the thumbnails of the video or the playlist.
  *
- * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/thumbnails)
+ * {@link https://developers.google.com/youtube/v3/docs/thumbnails | YouTube Data API Reference}
  */
 export class Thumbnails {
     public default?: Thumbnail;
