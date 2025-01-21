@@ -6,7 +6,6 @@
             {
                 "releaseRules": [
                     { "type": "docs", "release": "patch" },
-                    { "type": "feat", "release": "patch" },
                     { "breaking": true, "release": "minor" }
                 ]
             }
