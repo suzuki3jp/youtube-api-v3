@@ -217,4 +217,6 @@ export interface PlaylistItemData {
     videoOwnerChannelId: string;
     videoOwnerChannelName: string;
     position: number;
+
+    // `contentDetails.note` is never included. idk why
 }

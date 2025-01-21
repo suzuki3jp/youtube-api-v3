@@ -6,6 +6,7 @@ import type { OAuthProviders } from "../OAuthProvider";
 import { Pagination } from "../Pagination";
 import {
     type PlaylistItem,
+    playlistItemFrom,
     playlistItemFromMany,
 } from "../entities/playlist-item";
 import { LikelyBugError, type YouTubesJsErrors } from "../errors";
@@ -73,9 +74,62 @@ export class PlaylistItemManager {
             }),
         );
     }
+
+    /**
+     * Adds a item to a playlist.
+     *
+     * - The operation uses 50 quota units.
+     *
+     * @param options - The options to create a playlist item.
+     * @returns - The created playlist item.
+     */
+    public async create(
+        options: CreatePlaylistItemOptions,
+    ): Promise<Result<PlaylistItem, YouTubesJsErrors>> {
+        const { playlistId, videoId, position } = options;
+
+        const rawData = await wrapGaxios(
+            this.client.playlistItems.insert({
+                part: this.ALL_PARTS,
+                requestBody: {
+                    snippet: {
+                        playlistId,
+                        resourceId: {
+                            kind: "youtube#video",
+                            videoId,
+                        },
+                        position,
+                    },
+                },
+            }),
+        );
+        if (rawData.isErr()) return Err(rawData.data);
+        const item = playlistItemFrom(rawData.data, this.logger);
+        if (item.isErr()) return Err(item.data);
+
+        return Ok(item.data);
+    }
 }
 
 interface PlaylistItemManagerOptions {
     oauth: OAuthProviders;
     logger: Logger;
+}
+
+export interface CreatePlaylistItemOptions {
+    /**
+     * The ID of the playlist to add the item to.
+     */
+    playlistId: string;
+
+    /**
+     * The ID of the video to add to the playlist.
+     */
+    videoId: string;
+
+    /**
+     * The position of the item in the playlist.
+     * It must be `0 <= position <= N`, where N is the number of items in the playlist. Otherwise, the YouTube API will return an error.
+     */
+    position?: number;
 }
