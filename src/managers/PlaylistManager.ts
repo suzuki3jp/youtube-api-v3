@@ -14,7 +14,7 @@ import { wrapGaxios } from "../utils";
  * Manager for playlist endpoints.
  * Provides methods for `/youtube/v3/playlists`.
  *
- * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists)
+ * {@link https://developers.google.com/youtube/v3/docs/playlists | YouTube Data API Reference}
  */
 export class PlaylistManager {
     private client: NativeClient;
@@ -35,7 +35,7 @@ export class PlaylistManager {
      *
      * - This operation uses 1 quota unit.
      *
-     * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
+     * {@link https://developers.google.com/youtube/v3/docs/playlists/list | YouTube Data API Reference}
      * @param pageToken - The token for pagination.
      * @example
      * ```ts
@@ -86,7 +86,7 @@ export class PlaylistManager {
      * - This operation uses 1 quota unit.
      * - Note: The YouTube API returns empty data instead of an error when a playlist with the specified ID is not found.
      *
-     * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
+     * {@link https://developers.google.com/youtube/v3/docs/playlists/list | YouTube Data API Reference}
      * @param ids - The IDs of the playlist.
      * @param pageToken - The token for pagination.
      * @example
@@ -139,7 +139,7 @@ export class PlaylistManager {
      * - This operation uses 1 quota unit.
      * - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
      *
-     * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
+     * {@link https://developers.google.com/youtube/v3/docs/playlists/list | YouTube Data API Reference}
      * @param id - The ID of the channel.
      * @param pageToken - The token for pagination.
      * @example
@@ -193,7 +193,7 @@ export class PlaylistManager {
      * - There is a limit of approximately 10 playlists per day for creation.
      * - For more details, see the issue: https://issuetracker.google.com/issues/255216949
      *
-     * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/insert)
+     * {@link https://developers.google.com/youtube/v3/docs/playlists/insert | YouTube Data API Reference}
      * @param options - Options for creating a playlist.
      */
     public async create(
@@ -232,7 +232,7 @@ export class PlaylistManager {
      * - For example, when updating a playlist that has a description set, if you don't specify the `description`, it will be set to an empty string.
      * - However, for the `privacy` property, it seems to remain unchanged if not specified.
      *
-     * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/update)
+     * {@link https://developers.google.com/youtube/v3/docs/playlists/update | YouTube Data API Reference}
      * @param options - Options for updating a playlist.
      * @returns - The updated playlist.
      */
@@ -276,7 +276,7 @@ export class PlaylistManager {
      *
      * - This operation uses 50 quota units.
      *
-     * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/delete)
+     * {@link https://developers.google.com/youtube/v3/docs/playlists/delete | YouTube Data API Reference}
      * @param playlistId - The ID of the playlist.
      */
     public async deleteById(playlistId: string): Promise<void> {

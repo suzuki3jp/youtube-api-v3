@@ -10,7 +10,7 @@ import { Thumbnails } from "./thumbnails";
 /**
  * Represents a YouTube playlist resource.
  *
- * [YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists#resource)
+ * {@link https://developers.google.com/youtube/v3/docs/playlists#resource | YouTube Data API Reference}
  */
 export class Playlist {
     /**
