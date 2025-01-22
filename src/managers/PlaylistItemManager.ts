@@ -106,6 +106,23 @@ export class PlaylistItemManager {
 
         return Ok(item.data);
     }
+
+    /**
+     * Deletes a playlist item by its ID.
+     * @param id - The ID of the playlist item to delete.
+     */
+    public async deleteById(
+        id: string,
+    ): Promise<Result<undefined, YouTubesJsErrors>> {
+        const rawData = await wrapGaxios(
+            this.client.playlistItems.delete({
+                id,
+            }),
+        );
+        if (rawData.isErr()) return Err(rawData.data);
+
+        return Ok(undefined);
+    }
 }
 
 interface PlaylistItemManagerOptions {
