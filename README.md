@@ -56,6 +56,7 @@ main();
 ## Supported endpoints
 We are striving to support more endpoints, but currently, there are many unsupported endpoints. If the endpoint you want to use is not supported, please open an [issue](https://github.com/suzuki3jp/youtubes.js/issues/new) to request it. We plan to prioritize adding support for the most requested endpoints.
 
+-: Not available in YouTube Data API
 ×: Not supported  
 ⚠️: Partially supported  
 ✅: Fully supported
@@ -73,7 +74,7 @@ We are striving to support more endpoints, but currently, there are many unsuppo
 | [Members](https://developers.google.com/youtube/v3/docs/members) | × | - | - | - |
 | [MembershipsLevels](https://developers.google.com/youtube/v3/docs/membershipsLevels) | × | - | - | - |
 | [PlaylistImages](https://developers.google.com/youtube/v3/docs/playlistImages) | × | × | × | × |
-| [PlaylistItems](https://developers.google.com/youtube/v3/docs/playlistItems) | ⚠️ | ✅ | × | × |
+| [PlaylistItems](https://developers.google.com/youtube/v3/docs/playlistItems) | ⚠️ | ✅ | × | ✅ |
 | [Playlists](https://developers.google.com/youtube/v3/docs/playlists) | ✅ | ✅ | ✅ | ✅ |
 | [Search](https://developers.google.com/youtube/v3/docs/search) | × | - | - | - |
 | [Subscriptions](https://developers.google.com/youtube/v3/docs/subscriptions) | × | × | - | × |

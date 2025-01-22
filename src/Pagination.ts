@@ -21,7 +21,7 @@ export class Pagination<T> {
 
     /**
      * The total number of results in the result set.
-     * **NOTE**: This number may be larger than the number of actual retrievable results. The YouTube Data API may not return some playlists (for example, the "Liked videos" playlist). However, the totalResults count may include them.
+     * @remarks This number may be larger than the number of actual retrievable results. The YouTube Data API may not return some playlists (for example, the "Liked videos" playlist). However, the totalResults count may include them.
      */
     public totalResults: number;
 
@@ -75,7 +75,9 @@ export class Pagination<T> {
 
     /**
      * Fetches the previous page.
-     * - **NOTE**: This method will use the same quotas as the original request.
+     *
+     * @remarks
+     * - This method will use the same quotas as the original request.
      * - Normally, GET requests use a quota of 1 unit, while other methods use 50 units.
      * - However, some heavy methods use more than 50 units.
      * - See more details on the {@link https://developers.google.com/youtube/v3/determine_quota_cost | YouTube Data API reference}
@@ -108,7 +110,9 @@ export class Pagination<T> {
 
     /**
      * Fetches the next page.
-     * - **NOTE**: This method will use the same quotas as the original request.
+     *
+     * @remarks
+     * - This method will use the same quotas as the original request.
      * - Normally, GET requests use a quota of 1 unit, while other methods use 50 units.
      * - However, some heavy methods use more than 50 units.
      * - See more details on the {@link https://developers.google.com/youtube/v3/determine_quota_cost | YouTube Data API reference}
@@ -141,7 +145,9 @@ export class Pagination<T> {
 
     /**
      * Fetches all pages data.
-     * - **NOTE**: This method may consume unnecessary quotas, so be careful when using it in actual applications.
+     *
+     * @remarks
+     * - This method may consume unnecessary quotas, so be careful when using it in actual applications.
      * - We strongly recommend fetching the next page based on user actions (e.g., scrolling).
      * @returns All pages data in an array. If several items are in a page, this method will return a 2D array. Use `flat()` to convert it to a 1D array.
      * @example

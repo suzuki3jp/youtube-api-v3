@@ -35,8 +35,7 @@ export class PlaylistItemManager {
 
     /**
      * Retrieves a list of playlist items by a playlist ID.
-     *
-     * - The operation uses 1 quota unit.
+     * @remarks The operation uses 1 quota unit.
      *
      * {@link https://developers.google.com/youtube/v3/docs/playlistItems/list | YouTube Data API Reference}
      * @param playlistId - The ID of the playlist to retrieve items from.
@@ -77,9 +76,7 @@ export class PlaylistItemManager {
 
     /**
      * Adds a item to a playlist.
-     *
-     * - The operation uses 50 quota units.
-     *
+     * @remarks The operation uses 50 quota units.
      * @param options - The options to create a playlist item.
      * @returns - The created playlist item.
      */
@@ -109,6 +106,23 @@ export class PlaylistItemManager {
 
         return Ok(item.data);
     }
+
+    /**
+     * Deletes a playlist item by its ID.
+     * @param id - The ID of the playlist item to delete.
+     */
+    public async deleteById(
+        id: string,
+    ): Promise<Result<undefined, YouTubesJsErrors>> {
+        const rawData = await wrapGaxios(
+            this.client.playlistItems.delete({
+                id,
+            }),
+        );
+        if (rawData.isErr()) return Err(rawData.data);
+
+        return Ok(undefined);
+    }
 }
 
 interface PlaylistItemManagerOptions {
@@ -129,7 +143,7 @@ export interface CreatePlaylistItemOptions {
 
     /**
      * The position of the item in the playlist.
-     * It must be `0 <= position <= N`, where N is the number of items in the playlist. Otherwise, the YouTube API will return an error.
+     * @remarks It must be `0 <= position <= N`, where N is the number of items in the playlist. Otherwise, the YouTube API will return an error.
      */
     position?: number;
 }

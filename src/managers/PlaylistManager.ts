@@ -33,7 +33,7 @@ export class PlaylistManager {
     /**
      * Fetches the playlists owned by the authenticated user.
      *
-     * - This operation uses 1 quota unit.
+     * @remarks This operation uses 1 quota unit.
      *
      * {@link https://developers.google.com/youtube/v3/docs/playlists/list | YouTube Data API Reference}
      * @param pageToken - The token for pagination.
@@ -83,6 +83,7 @@ export class PlaylistManager {
     /**
      * Fetches a playlist by its ID.
      *
+     * @remarks
      * - This operation uses 1 quota unit.
      * - Note: The YouTube API returns empty data instead of an error when a playlist with the specified ID is not found.
      *
@@ -136,6 +137,7 @@ export class PlaylistManager {
     /**
      * Fetches the playlists of a channel by its ID.
      *
+     * @remarks
      * - This operation uses 1 quota unit.
      * - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
      *
@@ -189,6 +191,7 @@ export class PlaylistManager {
     /**
      * Creates a playlist.
      *
+     * @remarks
      * - This operation uses 50 quota units.
      * - There is a limit of approximately 10 playlists per day for creation.
      * - For more details, see the issue: https://issuetracker.google.com/issues/255216949
@@ -227,6 +230,7 @@ export class PlaylistManager {
     /**
      * Updates a playlist by its ID.
      *
+     * @remarks
      * - This operation uses 50 quota units.
      * - [If you are submitting an update request, and your request does not specify a value for a property that already has a value, the property's existing value will be deleted.](https://developers.google.com/youtube/v3/docs/playlists/update#request-body)
      * - For example, when updating a playlist that has a description set, if you don't specify the `description`, it will be set to an empty string.
@@ -274,7 +278,7 @@ export class PlaylistManager {
     /**
      * Deletes a playlist by its ID.
      *
-     * - This operation uses 50 quota units.
+     * @remarks This operation uses 50 quota units.
      *
      * {@link https://developers.google.com/youtube/v3/docs/playlists/delete | YouTube Data API Reference}
      * @param playlistId - The ID of the playlist.

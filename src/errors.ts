@@ -5,7 +5,7 @@ export type YouTubesJsErrors = LikelyBugError | YouTubeApiError;
 /**
  * Represents an error that is likely a bug in the library.
  *
- * If you encounter this error, please report the issue on [GitHub Issue](https://github.com/suzuki3jp/youtubes.js/issues/new).
+ * If you encounter this error, please report the issue on {@link https://github.com/suzuki3jp/youtubes.js/issues/new | GitHub Issue}.
  */
 export class LikelyBugError implements BaseError {
     public type = "LIKELY_BUG";
