@@ -56,7 +56,7 @@ main();
 ## Supported endpoints
 We are striving to support more endpoints, but currently, there are many unsupported endpoints. If the endpoint you want to use is not supported, please open an [issue](https://github.com/suzuki3jp/youtubes.js/issues/new) to request it. We plan to prioritize adding support for the most requested endpoints.
 
--: Not available in YouTube Data API
+-: Not available in YouTube Data API  
 ×: Not supported  
 ⚠️: Partially supported  
 ✅: Fully supported
