@@ -78,7 +78,19 @@ Description
 
 Adds a item to a playlist.
 
-- The operation uses 50 quota units.
+
+</td></tr>
+<tr><td>
+
+[deleteById(id)](./youtubes.js.playlistitemmanager.deletebyid.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Deletes a playlist item by its ID.
 
 
 </td></tr>
@@ -93,10 +105,6 @@ Adds a item to a playlist.
 </td><td>
 
 Retrieves a list of playlist items by a playlist ID.
-
-- The operation uses 1 quota unit.
-
-[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlistItems/list)
 
 
 </td></tr>

@@ -4,7 +4,7 @@
 
 ## Pagination.all() method
 
-Fetches all pages data. - \*\*NOTE\*\*: This method may consume unnecessary quotas, so be careful when using it in actual applications. - We strongly recommend fetching the next page based on user actions (e.g., scrolling).
+Fetches all pages data.
 
 **Signature:**
 
@@ -16,6 +16,10 @@ all(): Promise<Result<T[], YouTubesJsErrors>>;
 Promise&lt;Result&lt;T\[\], [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt;&gt;
 
 All pages data in an array. If several items are in a page, this method will return a 2D array. Use `flat()` to convert it to a 1D array.
+
+## Remarks
+
+- This method may consume unnecessary quotas, so be careful when using it in actual applications. - We strongly recommend fetching the next page based on user actions (e.g., scrolling).
 
 ## Example
 

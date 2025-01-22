@@ -4,10 +4,15 @@
 
 ## Pagination.totalResults property
 
-The total number of results in the result set. \*\*NOTE\*\*: This number may be larger than the number of actual retrievable results. The YouTube Data API may not return some playlists (for example, the "Liked videos" playlist). However, the totalResults count may include them.
+The total number of results in the result set.
 
 **Signature:**
 
 ```typescript
 totalResults: number;
 ```
+
+## Remarks
+
+This number may be larger than the number of actual retrievable results. The YouTube Data API may not return some playlists (for example, the "Liked videos" playlist). However, the totalResults count may include them.
+

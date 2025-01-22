@@ -6,10 +6,6 @@
 
 Fetches the playlists owned by the authenticated user.
 
-- This operation uses 1 quota unit.
-
-[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
-
 **Signature:**
 
 ```typescript
@@ -54,6 +50,12 @@ _(Optional)_ The token for pagination.
 **Returns:**
 
 Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;, [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt;&gt;
+
+## Remarks
+
+This operation uses 1 quota unit.
+
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 ## Example
 

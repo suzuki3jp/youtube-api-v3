@@ -6,10 +6,6 @@
 
 Fetches a playlist by its ID.
 
-- This operation uses 1 quota unit. - Note: The YouTube API returns empty data instead of an error when a playlist with the specified ID is not found.
-
-[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
-
 **Signature:**
 
 ```typescript
@@ -70,6 +66,12 @@ _(Optional)_ The token for pagination.
 **Returns:**
 
 Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;, [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt;&gt;
+
+## Remarks
+
+- This operation uses 1 quota unit. - Note: The YouTube API returns empty data instead of an error when a playlist with the specified ID is not found.
+
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 ## Example
 

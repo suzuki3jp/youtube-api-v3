@@ -6,10 +6,6 @@
 
 Retrieves a list of playlist items by a playlist ID.
 
-- The operation uses 1 quota unit.
-
-[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlistItems/list)
-
 **Signature:**
 
 ```typescript
@@ -71,4 +67,10 @@ _(Optional)_ The page token to use for pagination.
 
 Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[PlaylistItem](./youtubes.js.playlistitem.md)<!-- -->\[\]&gt;, [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt;&gt;
 
+
+## Remarks
+
+The operation uses 1 quota unit.
+
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlistItems/list)
 

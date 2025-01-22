@@ -6,8 +6,6 @@
 
 Adds a item to a playlist.
 
-- The operation uses 50 quota units.
-
 **Signature:**
 
 ```typescript
@@ -54,4 +52,8 @@ The options to create a playlist item.
 Promise&lt;Result&lt;[PlaylistItem](./youtubes.js.playlistitem.md)<!-- -->, [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt;&gt;
 
 - The created playlist item.
+
+## Remarks
+
+The operation uses 50 quota units.
 

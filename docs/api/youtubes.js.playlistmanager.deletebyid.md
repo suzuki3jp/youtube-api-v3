@@ -6,10 +6,6 @@
 
 Deletes a playlist by its ID.
 
-- This operation uses 50 quota units.
-
-[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/delete)
-
 **Signature:**
 
 ```typescript
@@ -54,4 +50,10 @@ The ID of the playlist.
 **Returns:**
 
 Promise&lt;void&gt;
+
+## Remarks
+
+This operation uses 50 quota units.
+
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/delete)
 

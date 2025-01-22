@@ -6,10 +6,6 @@
 
 Fetches the playlists of a channel by its ID.
 
-- This operation uses 1 quota unit. - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
-
-[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
-
 **Signature:**
 
 ```typescript
@@ -70,6 +66,12 @@ _(Optional)_ The token for pagination.
 **Returns:**
 
 Promise&lt;Result&lt;[Pagination](./youtubes.js.pagination.md)<!-- -->&lt;[Playlist](./youtubes.js.playlist.md)<!-- -->\[\]&gt;, [YouTubesJsErrors](./youtubes.js.youtubesjserrors.md)<!-- -->&gt;&gt;
+
+## Remarks
+
+- This operation uses 1 quota unit. - Retrieves all playlists when given an authenticated user's channel ID. Otherwise, only public playlists are accessible.
+
+[YouTube Data API Reference](https://developers.google.com/youtube/v3/docs/playlists/list)
 
 ## Example
 

@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.5...v0.5.0) (2025-01-22)
+
+
+### Features
+
+* Support `playlistItems.delete` ([8bc6700](https://github.com/suzuki3jp/youtubes.js/commit/8bc670063b629caab5e9c63ccd08e8ee0d330ce5))
+
 ## [0.4.5](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.4...v0.4.5) (2025-01-21)
 
 ## [0.4.4](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.3...v0.4.4) (2025-01-21)
