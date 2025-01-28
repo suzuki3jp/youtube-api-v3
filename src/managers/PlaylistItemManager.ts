@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import { Err, Ok, type Result } from "result4js";
+import { type Result, err, ok } from "neverthrow";
 
 import type { Logger } from "../Logger";
 import type { OAuthProviders } from "../OAuthProvider";
@@ -54,20 +54,20 @@ export class PlaylistItemManager {
                 pageToken,
             }),
         );
-        if (rawData.isErr()) return Err(rawData.data);
-        if (isNullish(rawData.data.items))
-            return Err(new LikelyBugError("The raw data is missing items"));
-        const items = playlistItemFromMany(rawData.data.items, this.logger);
-        if (items.isErr()) return Err(items.data);
+        if (rawData.isErr()) return err(rawData.error);
+        if (isNullish(rawData.value.items))
+            return err(new LikelyBugError("The raw data is missing items"));
+        const items = playlistItemFromMany(rawData.value.items, this.logger);
+        if (items.isErr()) return err(items.error);
 
-        return Ok(
+        return ok(
             new Pagination({
-                data: items.data,
+                data: items.value,
                 logger: this.logger,
-                prevToken: rawData.data.prevPageToken,
-                nextToken: rawData.data.nextPageToken,
-                resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
-                totalResults: rawData.data.pageInfo?.totalResults,
+                prevToken: rawData.value.prevPageToken,
+                nextToken: rawData.value.nextPageToken,
+                resultsPerPage: rawData.value.pageInfo?.resultsPerPage,
+                totalResults: rawData.value.pageInfo?.totalResults,
                 getWithToken: (token) =>
                     this.getByPlaylistId(playlistId, token),
             }),
@@ -100,11 +100,11 @@ export class PlaylistItemManager {
                 },
             }),
         );
-        if (rawData.isErr()) return Err(rawData.data);
-        const item = playlistItemFrom(rawData.data, this.logger);
-        if (item.isErr()) return Err(item.data);
+        if (rawData.isErr()) return err(rawData.error);
+        const item = playlistItemFrom(rawData.value, this.logger);
+        if (item.isErr()) return err(item.error);
 
-        return Ok(item.data);
+        return ok(item.value);
     }
 
     /**
@@ -119,9 +119,9 @@ export class PlaylistItemManager {
                 id,
             }),
         );
-        if (rawData.isErr()) return Err(rawData.data);
+        if (rawData.isErr()) return err(rawData.error);
 
-        return Ok(undefined);
+        return ok(undefined);
     }
 }
 

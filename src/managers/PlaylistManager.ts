@@ -1,5 +1,5 @@
 import { google } from "googleapis";
-import { Err, Ok, type Result } from "result4js";
+import { type Result, err, ok } from "neverthrow";
 
 import type { Logger } from "../Logger";
 import type { OAuthProviders } from "../OAuthProvider";
@@ -46,8 +46,7 @@ export class PlaylistManager {
      * });
      *
      * const client = new ApiClient({ oauth });
-     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
-     * const playlists = (await client.playlists.getMine()).throw(); // Pagination<Playlist[]>
+     * const playlists = await client.playlists.getMine(); // Result<Pagination<Playlist[]>, YouTubesJsErrors>
      * ```
      */
     public async getMine(
@@ -61,20 +60,20 @@ export class PlaylistManager {
                 pageToken,
             }),
         );
-        if (rawData.isErr()) return Err(rawData.data);
-        if (!rawData.data.items)
-            return Err(new LikelyBugError("The raw data is missing items."));
-        const playlists = Playlist.fromMany(rawData.data.items, this.logger);
-        if (playlists.isErr()) return Err(playlists.data);
+        if (rawData.isErr()) return err(rawData.error);
+        if (!rawData.value.items)
+            return err(new LikelyBugError("The raw data is missing items."));
+        const playlists = Playlist.fromMany(rawData.value.items, this.logger);
+        if (playlists.isErr()) return err(playlists.error);
 
-        return Ok(
+        return ok(
             new Pagination({
-                data: playlists.data,
+                data: playlists.value,
                 logger: this.logger,
-                prevToken: rawData.data.prevPageToken,
-                nextToken: rawData.data.nextPageToken,
-                resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
-                totalResults: rawData.data.pageInfo?.totalResults,
+                prevToken: rawData.value.prevPageToken,
+                nextToken: rawData.value.nextPageToken,
+                resultsPerPage: rawData.value.pageInfo?.resultsPerPage,
+                totalResults: rawData.value.pageInfo?.totalResults,
                 getWithToken: (token) => this.getMine(token),
             }),
         );
@@ -98,9 +97,7 @@ export class PlaylistManager {
      *  accessToken: "ACCESS_TOKEN",
      * });
      * const client = new ApiClient({ oauth });
-     *
-     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
-     * const playlists = (await client.playlists.getByIds(["ID1", "ID2"])).throw(); // Pagination<Playlist[]>
+     * const playlists = await client.playlists.getByIds(["ID1", "ID2"]) // Result<Pagination<Playlist[]>, YouTubesJsErrors>
      * ```
      */
     public async getByIds(
@@ -115,20 +112,20 @@ export class PlaylistManager {
                 pageToken,
             }),
         );
-        if (rawData.isErr()) return Err(rawData.data);
-        if (!rawData.data.items)
-            return Err(new LikelyBugError("The raw data is missing items."));
-        const playlists = Playlist.fromMany(rawData.data.items, this.logger);
-        if (playlists.isErr()) return Err(playlists.data);
+        if (rawData.isErr()) return err(rawData.error);
+        if (!rawData.value.items)
+            return err(new LikelyBugError("The raw data is missing items."));
+        const playlists = Playlist.fromMany(rawData.value.items, this.logger);
+        if (playlists.isErr()) return err(playlists.error);
 
-        return Ok(
+        return ok(
             new Pagination({
-                data: playlists.data,
+                data: playlists.value,
                 logger: this.logger,
-                prevToken: rawData.data.prevPageToken,
-                nextToken: rawData.data.nextPageToken,
-                resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
-                totalResults: rawData.data.pageInfo?.totalResults,
+                prevToken: rawData.value.prevPageToken,
+                nextToken: rawData.value.nextPageToken,
+                resultsPerPage: rawData.value.pageInfo?.resultsPerPage,
+                totalResults: rawData.value.pageInfo?.totalResults,
                 getWithToken: (token) => this.getByIds(ids, token),
             }),
         );
@@ -152,9 +149,7 @@ export class PlaylistManager {
      *  accessToken: "ACCESS_TOKEN",
      * });
      * const client = new ApiClient({ oauth });
-     *
-     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
-     * const playlists = (await client.playlists.getByChannelId("CHANNEL_ID")).throw(); // Pagination<Playlist[]>
+     * const playlists = await client.playlists.getByChannelId("CHANNEL_ID"); // Result<Pagination<Playlist[]>, YouTubesJsErrors>
      * ```
      */
     public async getByChannelId(
@@ -169,20 +164,20 @@ export class PlaylistManager {
                 pageToken,
             }),
         );
-        if (rawData.isErr()) return Err(rawData.data);
-        if (!rawData.data.items)
-            return Err(new LikelyBugError("The raw data is missing items."));
-        const playlists = Playlist.fromMany(rawData.data.items, this.logger);
-        if (playlists.isErr()) return Err(playlists.data);
+        if (rawData.isErr()) return err(rawData.error);
+        if (!rawData.value.items)
+            return err(new LikelyBugError("The raw data is missing items."));
+        const playlists = Playlist.fromMany(rawData.value.items, this.logger);
+        if (playlists.isErr()) return err(playlists.error);
 
-        return Ok(
+        return ok(
             new Pagination({
-                data: playlists.data,
+                data: playlists.value,
                 logger: this.logger,
-                prevToken: rawData.data.prevPageToken,
-                nextToken: rawData.data.nextPageToken,
-                resultsPerPage: rawData.data.pageInfo?.resultsPerPage,
-                totalResults: rawData.data.pageInfo?.totalResults,
+                prevToken: rawData.value.prevPageToken,
+                nextToken: rawData.value.nextPageToken,
+                resultsPerPage: rawData.value.pageInfo?.resultsPerPage,
+                totalResults: rawData.value.pageInfo?.totalResults,
                 getWithToken: (token) => this.getByChannelId(id, token),
             }),
         );
@@ -220,11 +215,11 @@ export class PlaylistManager {
                 },
             }),
         );
-        if (rawData.isErr()) return Err(rawData.data);
-        const playlist = Playlist.from(rawData.data, this.logger);
-        if (playlist.isErr()) return Err(playlist.data);
+        if (rawData.isErr()) return err(rawData.error);
+        const playlist = Playlist.from(rawData.value, this.logger);
+        if (playlist.isErr()) return err(playlist.error);
 
-        return Ok(playlist.data);
+        return ok(playlist.value);
     }
 
     /**
@@ -268,11 +263,11 @@ export class PlaylistManager {
                 },
             }),
         );
-        if (rawData.isErr()) return Err(rawData.data);
-        const playlist = Playlist.from(rawData.data, this.logger);
-        if (playlist.isErr()) return Err(playlist.data);
+        if (rawData.isErr()) return err(rawData.error);
+        const playlist = Playlist.from(rawData.value, this.logger);
+        if (playlist.isErr()) return err(playlist.error);
 
-        return Ok(playlist.data);
+        return ok(playlist.value);
     }
 
     /**

@@ -1,4 +1,4 @@
-import { Err, Ok, type Result } from "result4js";
+import { type Result, err, ok } from "neverthrow";
 
 import { LikelyBugError } from "../errors";
 
@@ -11,17 +11,17 @@ export type Privacy = "public" | "unlisted" | "private";
 export function convertToPrivacy(
     data?: string,
 ): Result<Privacy, LikelyBugError> {
-    if (!data) return Err(new LikelyBugError("The raw data is undefined."));
+    if (!data) return err(new LikelyBugError("The raw data is undefined."));
 
     switch (data) {
         case "public":
-            return Ok("public" as Privacy);
+            return ok("public");
         case "unlisted":
-            return Ok("unlisted" as Privacy);
+            return ok("unlisted");
         case "private":
-            return Ok("private" as Privacy);
+            return ok("private");
         default:
-            return Err(
+            return err(
                 new LikelyBugError(
                     `The raw data is unexpected format. Expected "public", "unlisted", or "private". Received: ${data}`,
                 ),

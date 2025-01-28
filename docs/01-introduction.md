@@ -38,9 +38,9 @@ main();
 ```
 
 ## Handling errors
-All public methods of `youtubes.js` return `Result` of [`result4js`](https://github.com/suzuki3jp/result4js).  
-Using `Result` enables type-safe error handling.
-> If you want to abandon type safety and perform dangerous error handling, you can use [`Result#throw`](https://github.com/suzuki3jp/result4js?tab=readme-ov-file#usage).
+All public methods of `youtubes.js` return `Result` of [`neverthrow`](https://github.com/supermacro/neverthrow).  
+Using `Result` enables type-safe error handling.  
+While developers familiar with JavaScript might find `Result`-based error handling cumbersome at first, it will dramatically improve application reliability and substantially enhance the development experience through type safety.
 
 ```ts
 import { ApiClient, StaticOAuthProvider } from "youtubes.js";
@@ -58,7 +58,7 @@ async function main() {
         return;
     }
 
-    const playlists = playlistsResult.data;
+    const playlists = playlistsResult.value;
 }
 
 main();

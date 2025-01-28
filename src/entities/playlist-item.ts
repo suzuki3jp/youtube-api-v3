@@ -1,5 +1,5 @@
 import type { youtube_v3 } from "googleapis";
-import { Err, Ok, type Result } from "result4js";
+import { type Result, err, ok } from "neverthrow";
 
 import type { Logger } from "../Logger";
 import { LikelyBugError } from "../errors";
@@ -45,7 +45,7 @@ export function playlistItemFrom(
         data.status?.privacyStatus === "private" &&
         Object.keys(data.snippet?.thumbnails ?? {}).length === 0
     )
-        return Ok(new UnavailablePlaylistItem());
+        return ok(new UnavailablePlaylistItem());
 
     if (
         isNullish(data.id) ||
@@ -65,7 +65,7 @@ export function playlistItemFrom(
         currentLogger.debug("Raw data:");
         currentLogger.debug(JSON.stringify(data, null, "\t"));
 
-        return Err(
+        return err(
             new LikelyBugError(
                 "The raw data is missing required fields of a playlist data.",
             ),
@@ -74,16 +74,16 @@ export function playlistItemFrom(
 
     const thumbnails = Thumbnails.from(data.snippet.thumbnails, currentLogger);
     const privacy = convertToPrivacy(data.status.privacyStatus);
-    if (thumbnails.isErr()) return Err(thumbnails.data);
-    if (privacy.isErr()) return Err(privacy.data);
+    if (thumbnails.isErr()) return err(thumbnails.error);
+    if (privacy.isErr()) return err(privacy.error);
 
-    return Ok(
+    return ok(
         new AvailablePlaylistItem({
             id: data.id,
             playlistId: data.snippet.playlistId,
             title: data.snippet.title,
             description: data.snippet.description,
-            thumbnails: thumbnails.data,
+            thumbnails: thumbnails.value,
             channelId: data.snippet.channelId,
             channelName: data.snippet.channelTitle,
             videoId: data.snippet.resourceId.videoId,
@@ -101,12 +101,12 @@ export function playlistItemFromMany(
     const playlistItems: PlaylistItem[] = [];
     for (const item of data) {
         const playlistItem = playlistItemFrom(item, logger);
-        if (playlistItem.isErr()) return Err(playlistItem.data);
+        if (playlistItem.isErr()) return err(playlistItem.error);
 
-        playlistItems.push(playlistItem.data);
+        playlistItems.push(playlistItem.value);
     }
 
-    return Ok(playlistItems);
+    return ok(playlistItems);
 }
 
 /**
