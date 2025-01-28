@@ -1,5 +1,5 @@
 import type { youtube_v3 } from "googleapis";
-import { Err, Ok, type Result } from "result4js";
+import { type Result, err, ok } from "neverthrow";
 
 import type { Logger } from "../Logger";
 import { LikelyBugError } from "../errors";
@@ -53,14 +53,14 @@ export class Thumbnails {
             currentLogger.debug("Raw data:");
             currentLogger.debug(JSON.stringify(data, null, "\t"));
 
-            return Err(
+            return err(
                 new LikelyBugError(
                     "The raw data is missing required fields. Each thumbnail (default, medium, high, standard, maxres) must include url, width, and height.",
                 ),
             );
         }
 
-        return Ok(new Thumbnails(data as ThumbnailsData));
+        return ok(new Thumbnails(data as ThumbnailsData));
     }
 
     /**

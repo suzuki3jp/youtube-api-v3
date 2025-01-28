@@ -398,7 +398,12 @@ describe("Thumbnails", () => {
 
     test(`Thumbnails#from for ${dummy.length} cases`, () => {
         for (const [data, expected] of dummy) {
-            expect(Thumbnails.from(data, logger).data).toEqual(expected);
+            const actual = Thumbnails.from(data, logger);
+            if (actual.isErr()) {
+                expect(actual.error).toEqual(expected);
+            } else {
+                expect(actual.value).toEqual(expected);
+            }
         }
     });
 });

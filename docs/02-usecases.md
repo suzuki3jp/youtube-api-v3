@@ -1,7 +1,7 @@
 # Use Cases
 
 ## Note
-All methods in `youtubes.js` return [`Result`](https://github.com/suzuki3jp/result4js) for safe error handling.  
+All methods in `youtubes.js` return [`Result`](https://github.com/supermacro/neverthrow) for safe error handling.  
 Learn more about error handling with `Result` [here](./01-introduction.md#handling-errors).
 
 ## Pagination
@@ -34,7 +34,7 @@ const allPages = await playlists.all() // Result<Playlist[], YouTubesJsErrors
 if (allPages.isErr()) return; // Handling errors
 // Returns all pages in an array. For multiple items per page, returns a 2D array.
 // Use flat() to convert to a 1D array.
-const data = allPages.data.flat();
+const data = allPages.value.flat();
 ```
 
 ## `Playlists`

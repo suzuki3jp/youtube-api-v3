@@ -1,4 +1,4 @@
-import { Err, Ok, type Result } from "result4js";
+import { type Result, err, ok } from "neverthrow";
 
 import type { Logger } from "./Logger";
 import { LIKELY_BUG } from "./constants";
@@ -91,12 +91,12 @@ export class Pagination<T> {
      * });
      * const client = new ApiClient({ oauth });
      *
-     *
-     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
-     * const playlists = (await client.playlists.getMine()).throw();
-     * console.log(playlists.data); // The first page of playlists
-     * const prevPage = (await playlists.prev()).throw();
-     * console.log(prevPage?.data); // The previous page of playlists or null if there is no previous page
+     * const playlists = await client.playlists.getMine();
+     * if (playlists.isErr()) return;
+     * console.log(playlists.value); // The first page of playlists
+     * const prevPage = await playlists.prev();
+     * if (prevPage?.isErr()) return;
+     * console.log(prevPage?.value); // The previous page of playlists or null if there is no previous page
      * ```
      */
     public async prev(): Promise<Result<
@@ -126,12 +126,12 @@ export class Pagination<T> {
      * });
      * const client = new ApiClient({ oauth });
      *
-     *
-     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
-     * const playlists = (await client.playlists.getMine()).throw();
-     * console.log(playlists.data); // The first page of playlists
-     * const nextPage = (await playlists.next()).throw();
-     * console.log(nextPage?.data); // The second page of playlists or null if there is no next page
+     * const playlists = await client.playlists.getMine();
+     * if (playlists.isErr()) return;
+     * console.log(playlists.value); // The first page of playlists
+     * const nextPage = await playlists.next();
+     * if (nextPage?.isErr()) return;
+     * console.log(nextPage?.value); // The second page of playlists or null if there is no next page
      * ```
      */
     public async next(): Promise<Result<
@@ -159,9 +159,12 @@ export class Pagination<T> {
      * });
      * const client = new ApiClient({ oauth });
      *
-     * // THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
-     * const playlists = (await client.playlists.getMine()).throw();
-     * const allPlaylists = (await playlists.all()).throw().flat();
+     * const playlists = await client.playlists.getMine();
+     * if (playlists.isErr()) {
+     *     // Handle the error
+     *    return;
+     * }
+     * const allPlaylists = (await playlists.all()).flat();
      * ```
      */
     public async all(): Promise<Result<T[], YouTubesJsErrors>> {
@@ -170,19 +173,19 @@ export class Pagination<T> {
 
         let prev = await this.prev();
         while (prev) {
-            if (prev.isErr()) return Err(prev.data);
-            result.unshift(prev.data.data);
-            prev = await prev.data.prev();
+            if (prev.isErr()) return err(prev.error);
+            result.unshift(prev.value.data);
+            prev = await prev.value.prev();
         }
 
         let next = await this.next();
         while (next) {
-            if (next.isErr()) return Err(next.data);
-            result.push(next.data.data);
-            next = await next.data.next();
+            if (next.isErr()) return err(next.error);
+            result.push(next.value.data);
+            next = await next.value.next();
         }
 
-        return Ok(result);
+        return ok(result);
     }
 }
 

@@ -21,6 +21,11 @@ test("convertToPrivacy", () => {
     ];
 
     for (const [data, expected] of dummy) {
-        expect(convertToPrivacy(data).data).toEqual(expected);
+        const actual = convertToPrivacy(data);
+        if (actual.isErr()) {
+            expect(actual.error).toEqual(expected);
+        } else {
+            expect(actual.value).toEqual(expected);
+        }
     }
 });

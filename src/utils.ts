@@ -1,5 +1,5 @@
 import type { GaxiosPromise } from "gaxios";
-import { Err, Ok, type Result } from "result4js";
+import { type Result, err, ok } from "neverthrow";
 
 import { type YouTubesJsErrors, handleYouTubeApiError } from "./errors";
 
@@ -19,8 +19,8 @@ export async function wrapGaxios<T>(
 ): Promise<Result<T, YouTubesJsErrors>> {
     try {
         const response = await promise;
-        return Ok(response.data);
+        return ok(response.data);
     } catch (error) {
-        return Err(handleYouTubeApiError(error));
+        return err(handleYouTubeApiError(error));
     }
 }

@@ -1,5 +1,5 @@
 import type { youtube_v3 } from "googleapis";
-import { Err, Ok, type Result } from "result4js";
+import { type Result, err, ok } from "neverthrow";
 
 import type { Logger } from "../Logger";
 import { LikelyBugError } from "../errors";
@@ -102,7 +102,7 @@ export class Playlist {
             currentLogger.debug("Generating Playlist instance from raw data.");
             currentLogger.debug("Raw data:");
             currentLogger.debug(JSON.stringify(data, null, "\t"));
-            return Err(new LikelyBugError(message));
+            return err(new LikelyBugError(message));
         }
 
         const thumbnails = Thumbnails.from(
@@ -110,16 +110,16 @@ export class Playlist {
             currentLogger,
         );
         const privacy = convertToPrivacy(data.status.privacyStatus);
-        if (privacy.isErr()) return Err(privacy.data);
-        if (thumbnails.isErr()) return Err(thumbnails.data);
+        if (privacy.isErr()) return err(privacy.error);
+        if (thumbnails.isErr()) return err(thumbnails.error);
 
-        return Ok(
+        return ok(
             new Playlist({
                 id: data.id,
                 title: data.snippet.title,
                 description: data.snippet.description,
-                thumbnails: thumbnails.data,
-                privacy: privacy.data,
+                thumbnails: thumbnails.value,
+                privacy: privacy.value,
                 count: data.contentDetails.itemCount,
                 publishedAt: new Date(data.snippet.publishedAt),
                 channelId: data.snippet.channelId,
@@ -138,12 +138,12 @@ export class Playlist {
         for (const playlist of data) {
             const result = Playlist.from(playlist, currentLogger);
             if (result.isErr()) {
-                return Err(result.data);
+                return err(result.error);
             }
-            playlists.push(result.data);
+            playlists.push(result.value);
         }
 
-        return Ok(playlists);
+        return ok(playlists);
     }
 }
 

@@ -105,6 +105,11 @@ test("Playlist#from", () => {
     ];
 
     for (const [data, expected] of dummy) {
-        expect(Playlist.from(data, logger).data).toEqual(expected);
+        const actual = Playlist.from(data, logger);
+        if (actual.isErr()) {
+            expect(actual.error).toEqual(expected);
+        } else {
+            expect(actual.value).toEqual(expected);
+        }
     }
 });
