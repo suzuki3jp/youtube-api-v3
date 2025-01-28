@@ -208,6 +208,10 @@ test("playlistItemFrom", () => {
 
     for (const [input, expected] of dummy) {
         const actual = playlistItemFrom(input, logger);
-        expect(actual.data).toEqual(expected);
+        if (actual.isErr()) {
+            expect(actual.error).toEqual(expected);
+        } else {
+            expect(actual.value).toEqual(expected);
+        }
     }
 });
