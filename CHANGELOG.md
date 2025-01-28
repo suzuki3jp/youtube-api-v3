@@ -1,3 +1,10 @@
+# [0.6.0](https://github.com/suzuki3jp/youtubes.js/compare/v0.5.0...v0.6.0) (2025-01-28)
+
+
+### Features
+
+* Migrate from result4js to neverthrow ([f1e3c5a](https://github.com/suzuki3jp/youtubes.js/commit/f1e3c5acbde71c5f2c2b690ab88eb6c2d5da8e1c))
+
 # [0.5.0](https://github.com/suzuki3jp/youtubes.js/compare/v0.4.5...v0.5.0) (2025-01-22)
 
 

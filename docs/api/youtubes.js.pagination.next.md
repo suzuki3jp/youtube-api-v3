@@ -32,11 +32,11 @@ const oauth = new StaticOAuthProvider({
 });
 const client = new ApiClient({ oauth });
 
-
-// THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
-const playlists = (await client.playlists.getMine()).throw();
-console.log(playlists.data); // The first page of playlists
-const nextPage = (await playlists.next()).throw();
-console.log(nextPage?.data); // The second page of playlists or null if there is no next page
+const playlists = await client.playlists.getMine();
+if (playlists.isErr()) return;
+console.log(playlists.value); // The first page of playlists
+const nextPage = await playlists.next();
+if (nextPage?.isErr()) return;
+console.log(nextPage?.value); // The second page of playlists or null if there is no next page
 ```
 

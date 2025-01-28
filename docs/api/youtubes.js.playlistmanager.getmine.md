@@ -68,7 +68,6 @@ const oauth = new StaticOAuthProvider({
 });
 
 const client = new ApiClient({ oauth });
-// THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
-const playlists = (await client.playlists.getMine()).throw(); // Pagination<Playlist[]>
+const playlists = await client.playlists.getMine(); // Result<Pagination<Playlist[]>, YouTubesJsErrors>
 ```
 

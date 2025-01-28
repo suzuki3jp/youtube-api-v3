@@ -83,8 +83,6 @@ const oauth = new StaticOAuthProvider({
  accessToken: "ACCESS_TOKEN",
 });
 const client = new ApiClient({ oauth });
-
-// THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
-const playlists = (await client.playlists.getByIds(["ID1", "ID2"])).throw(); // Pagination<Playlist[]>
+const playlists = await client.playlists.getByIds(["ID1", "ID2"]) // Result<Pagination<Playlist[]>, YouTubesJsErrors>
 ```
 

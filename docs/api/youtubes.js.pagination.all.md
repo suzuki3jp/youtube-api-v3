@@ -32,8 +32,11 @@ const oauth = new StaticOAuthProvider({
 });
 const client = new ApiClient({ oauth });
 
-// THIS IS UNSAFE ERROR HANDLING. See the safe error handling in the README.md Introduction.
-const playlists = (await client.playlists.getMine()).throw();
-const allPlaylists = (await playlists.all()).throw().flat();
+const playlists = await client.playlists.getMine();
+if (playlists.isErr()) {
+    // Handle the error
+   return;
+}
+const allPlaylists = (await playlists.all()).flat();
 ```
 
